@@ -9,6 +9,8 @@ urlpatterns = [
     url(r'^create/$', views.post_create, name="create"),
     url(r'^logout/$', logout_view, name="logout"),
     url(r'^login/$', login, name="login"),
+    url(r'^profile/$', profile_view, name="profile"),
+    url(r'^(?P<id>\d+)/active/$', views.active_state, name="active_state"),
     url(r'^(?P<id>\d+)/$', views.post_detail, name='detail'),
     url(r'^(?P<id>\d+)/edit/$', views.post_update, name="edit"),
 ]

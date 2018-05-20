@@ -54,3 +54,4 @@ class UserRegisterForm(forms.ModelForm):
         if username_qs.exists():
             raise forms.ValidationError("Данное имя пользователя используется, выберите другую")
         return super(UserRegisterForm, self).clean(*args, **kwargs)
+

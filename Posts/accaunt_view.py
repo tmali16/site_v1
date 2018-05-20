@@ -1,10 +1,11 @@
 from django.contrib.auth import authenticate, logout
 from django.http import Http404
 from django.shortcuts import redirect, render
+from django.utils import timezone
 
 from Posts.accauntForm import *
 from Posts.models import Post
-
+from .views import active_state
 
 def login(request):
     title = "Войти"
@@ -48,12 +49,14 @@ def logout_view(request):
 def profile_view(request):
     if not request.user.is_authenticated:
         raise Http404
+    active_day = timezone.now()
     title = "Мой профиль"
     user = request.user
     data_list = Post.objects.all().filter(user=user.id)
     context = {
         'user': user,
         'title': title,
-        'posts': data_list
+        'posts': data_list,
+        'tizone': active_day
     }
     return render(request, "profile.html", context)

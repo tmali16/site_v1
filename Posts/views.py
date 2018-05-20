@@ -1,7 +1,7 @@
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from datetime import *
-from .activate import checks
+from .activate import *
 import time
 import threading
 # Create your views here.
@@ -10,11 +10,12 @@ from Posts.accauntForm import *
 from Posts.models import Post
 
 
+
 def post_list(request):
     title = "Главная"
     post = Post.objects.all()
     # title = "Войти"
-    threading.Timer(1.0, checks).start()
+    count_to_end_active()
     context = {
         "title": title,
         'post': post,
@@ -65,7 +66,17 @@ def post_detail(request, id=None):
         # "comment_form": comment_form,
     }
     return render(request, "detail.html", context)
+
+
 # ------------------------------------------------------------------------------------
 
+def active_state(request, id):
+    inst = get_object_or_404(Post, id=id).user_active
+    if inst:
+        Post.objects.filter(id=id).update(user_active=False)
+        redirect('Posts:profile')
+    else:
+        Post.objects.filter(id=id).update(user_active=True)
+        redirect('Posts:profile')
 
-
+    return redirect('Posts:profile')

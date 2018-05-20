@@ -34,11 +34,13 @@ class haire(models.Model):
     def __str__(self):
         return self.value
 
+
 class active_days(models.Model):
     value = models.CharField(max_length=50)
 
     def __str__(self):
         return self.value
+
 
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
