@@ -19,14 +19,13 @@ def count_day(td):
         elif 2 <= day <= 4:
             days_call = 'дня'
         return '{0} {1}'.format(day, days_call)
-    elif hours > 1:
+    elif hours > 0:
         if 1 == hours or hours == 21:
             time_call = 'час'
         elif 2 <= hours <= 4 or hours >= 22:
             time_call = 'часа'
         elif 5 <= hours <= 20:
             time_call = 'часов'
-
         return '{0} {1}'.format(hours, time_call)
     else:
         return '{0} ч. {1} минуты'.format(hours, minute)
