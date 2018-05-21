@@ -16,11 +16,11 @@ def login(request):
         user = authenticate(username=username, password=password)
         login(request, user)
         return redirect("Posts:profile")
-    return render(request, "modal.html", {"authForm": form, "title": title})
+    return render(request, "base.html", {"authForm": form, "title": title})
 
 def log_in(request):
     if request.GET:
-        log = request.GET['username']
+        log = request.POST['username']
         # pass_ = request.POST['password']
         # user = authenticate(username=log, password=pass_)
         # login(request, user)
