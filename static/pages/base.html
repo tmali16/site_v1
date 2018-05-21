@@ -18,35 +18,12 @@
 </head>
 
 <body>
-{% block modal %}
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Вход</h5>
-                </div>
-                <form action="" method="post">{% csrf_token %}
-                    <div class="modal-body">
-                        <div class="form-group form-group-sm">
-                            {{ authForm.as_p }}
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="submit"  class="btn btn-primary" value="Войти" id="logs">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-{% endblock modal %}
 {% block nav %}
     {% include 'nav-bar.html' %}
 {% endblock %}
 {% block breadcrumbs %}
     <br>
 {% endblock breadcrumbs %}
-
 {% block body %}
 
 {% endblock %}
@@ -66,7 +43,8 @@ $(function() {
     });
 });
 
-$('#logs').click(function () {
+
+$('.log_in_btn').click(function () {
     alert('yes');
 {#    $.ajax({#}
 {#        type: "GET",#}

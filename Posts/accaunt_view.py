@@ -1,36 +1,29 @@
-from django.contrib.auth import authenticate, logout
+from django.contrib.auth import login as auth_login, authenticate, logout
 from django.http import Http404
 from django.shortcuts import redirect, render
 from django.utils import timezone
 
 from Posts.accauntForm import *
 from Posts.models import Post
-from .views import active_state
+
 
 def login(request):
     title = "Войти"
+    btnTitle = 'Войти'
     form = UserLoginForm(request.POST or None)
     if form.is_valid():
         username = form.cleaned_data.get("username")
         password = form.cleaned_data.get("password")
         user = authenticate(username=username, password=password)
-        login(request, user)
+        auth_login(request, user)
         return redirect("Posts:profile")
-    return render(request, "base.html", {"authForm": form, "title": title})
+    return render(request, "accaunt_form.html", {"authForm": form, "title": title, 'btn' : btnTitle})
 
-def log_in(request):
-    if request.GET:
-        log = request.POST['username']
-        # pass_ = request.POST['password']
-        # user = authenticate(username=log, password=pass_)
-        # login(request, user)
-        # return redirect('Post:profile')
-        print('hi')
 
 def register_view(request):
     title = "Регистрация"
+    btnTitle = 'Регистрация'
     form = UserRegisterForm(request.POST or None)
-
     if form.is_valid():
         user = form.save(commit=False)
         password = form.cleaned_data.get("password")
@@ -38,11 +31,12 @@ def register_view(request):
         user.save()
         # user_gains_perms(request, user_id=user.id)
         new_user = authenticate(username=user.username, password=password)
-        login(request, new_user)
-        return redirect("/posts/profile")
+        auth_login(request, new_user)
+        return redirect("Posts:profile")
     context = {
-        'form': form,
-        'title': title
+        'authForm': form,
+        'title': title,
+        'btn' : btnTitle
 
     }
     return render(request, "accaunt_form.html", context)
@@ -50,7 +44,7 @@ def register_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect("/posts")
+    return redirect("/post")
 
 
 def profile_view(request):
