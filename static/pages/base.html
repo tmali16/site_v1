@@ -19,7 +19,37 @@
 
 <body>
 {% block modal %}
-{% include 'modal.html' %}
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Вход</h5>
+                    {#                    <a type="button" class="close" data-dismiss="modal" aria-label="Close">#}
+                    {#                        <span aria-hidden="true">&times;</span>#}
+                    {#                    </a>#}
+                </div>
+                <form action="" method="GET" id="login_form">{% csrf_token %}
+                    <div class="modal-body">
+                        <div class="form-group form-group-sm">
+                            <div class="form-group">
+                                <label for="log">Логин</label>
+                                <input type="text" class="form-control" name="log" id="username" aria-describedby="login" placeholder="Логин">
+                                {#                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>#}
+                            </div>
+                            <div class="form-group">
+                                <label for="log">Пароль</label>
+                                <input type="password" name="pass" class="form-control" id="password" placeholder="Пароль">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit"  class="btn btn-primary" value="Войти" id="logs">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 {% endblock modal %}
 {% block nav %}
     {% include 'nav-bar.html' %}
@@ -46,7 +76,23 @@ $(function() {
     $('#myModal').on('shown.bs.modal', function () {
         $('#myInput').trigger('focus')
     });
-}
+});
+$('#logs').click(function () {
+    alert('yes');
+    $.ajax({
+        type: "GET",
+        url: "login", //Change
+        data: {
+            'username': $('#username').val()
+        },
+        dataType: 'text',
+        cache: false,
+        success: function () {
+            alert('ok')
+        }
+    })
+
+});
 </script>
 </body>
 </html>

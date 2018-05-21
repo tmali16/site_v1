@@ -15,10 +15,17 @@ def login(request):
         password = form.cleaned_data.get("password")
         user = authenticate(username=username, password=password)
         login(request, user)
-        return redirect("posts:profile")
-
+        return redirect("Posts:profile")
     return render(request, "modal.html", {"authForm": form, "title": title})
 
+def log_in(request):
+    if request.GET:
+        log = request.GET['username']
+        # pass_ = request.POST['password']
+        # user = authenticate(username=log, password=pass_)
+        # login(request, user)
+        # return redirect('Post:profile')
+        print('hi')
 
 def register_view(request):
     title = "Регистрация"
