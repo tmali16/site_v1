@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 {#                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">#}
-                <div class="navbar-nav float-right">
+                <div class="navbar-nav float-right" class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     {% if  request.user.is_authenticated %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'Posts:profile' %}" >Мой профиль</a>
@@ -26,10 +26,10 @@
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="" data-toggle="modal" data-target="#exampleModal">Войти</a>
+                            <a class="nav-link" href="{% url 'Posts:login' %}">Войти</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="">Регистрация</a>
+                            <a class="nav-link " href="{% url 'Posts:register' %}">Регистрация</a>
                         </li>
                     {% endif %}
                     {#                    </div>#}

@@ -1,8 +1,39 @@
 from django import template
+from django.shortcuts import get_object_or_404
 from django.utils import timezone
+
+from Posts.models import Post
+from Service.models import Service
 
 register = template.Library()
 
+@register.filter
+def appart_1(id):
+    res = get_object_or_404(Service, post_id=id)
+    return res.appart_1
+
+@register.filter
+def appart_2(id):
+    print('apprt_2 {0}'.format(id))
+    res = get_object_or_404(Service, post_id=id)
+    return res.appart_2
+@register.filter
+def appart_night(id):
+    print('appart_night {0}'.format(id))
+    res = get_object_or_404(Service, post_id=id)
+    return res.appart_naigth
+@register.filter
+def outside_1(id):
+    res = get_object_or_404(Service, post_id=id)
+    return res.outside_1
+@register.filter
+def outside_2(id):
+    res = get_object_or_404(Service, post_id=id)
+    return res.outside_2
+@register.filter
+def outside_night(id):
+    res = get_object_or_404(Service, post_id=id)
+    return res.outside_nigth
 
 @register.filter
 def count_day(td):

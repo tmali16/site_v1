@@ -1,8 +1,16 @@
+from django.conf import settings
 from django.contrib.auth.models import User
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
 from django.db import models
 
 
 # Create your models here.
+from django.urls import reverse
+
+from Comment.models import Comment
+
+
 def file_location(instance, filename):
     return "form_%s/%s" % (instance.id, filename)
 
@@ -35,21 +43,14 @@ class haire(models.Model):
         return self.value
 
 
-class active_days(models.Model):
-    value = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self.value
-
-
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100, blank=True)
     phone = models.CharField(max_length=12, null=False)
     age = models.CharField(max_length=10)
-    boob = models.CharField(max_length=5)
-    height = models.CharField(max_length=5)
-    weight = models.CharField(max_length=5)
+    boob = models.FloatField(max_length=5)
+    height = models.IntegerField(max_length=5)
+    weight = models.IntegerField(max_length=5)
     note = models.TextField(max_length=500)
     hair = models.ForeignKey(haire, on_delete=models.CASCADE)
     eye = models.ForeignKey(eyes, on_delete=models.CASCADE)
@@ -63,9 +64,25 @@ class Post(models.Model):
     timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
 
     user_active = models.BooleanField(default=True)
-    active_day = models.ForeignKey(active_days, on_delete=models.CASCADE)
     end_date = models.DateTimeField(auto_now_add=False, null=True)
     admin_active = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse("Posts:detail", kwargs={"id": self.id})
+
+    @property
+    def comments(self):
+        instance = self
+        qs = Comment.objects.filter_by_instance(instance)
+        return qs
+
+
+
+    @property
+    def get_content_type(self):
+        instance = self
+        content_type = ContentType.objects.get_for_model(instance.__class__)
+        return content_type

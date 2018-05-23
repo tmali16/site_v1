@@ -1,16 +1,21 @@
 {% extends 'base.html' %}
+{% load cust_tamplate %}
 {% block body %}
+    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample"
+       role="button" aria-expanded="false" aria-controls="collapseExample">
+        Link with href
+    </a>
     <br>
     <div class="container">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-4 col-sm-5 col-xs-3 col-lg-3 collapse" id="collapseExample">
                 <div class="bg-white p-3">
                     <div class="header p-2 "><label class="h3">Сортировка</label><br></div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item list-group-item-action">Cras justo odio</li>
-                        <li class="list-group-item list-group-item-action">Dapibus ac facilisis in</li>
-                        <li class="list-group-item list-group-item-action">Morbi leo risus</li>
-                        <li class="list-group-item list-group-item-action">Porta ac consectetur ac</li>
+                        <a href="{% url 'Posts:expencive' %}"><li class="list-group-item list-group-item-action"> Дорогие</li></a>
+                        <a href="{% url 'Posts:yunger' %}"><li class="list-group-item list-group-item-action">Молодые</li></a>
+                        <a href="{% url 'Posts:new' %}"><li class="list-group-item list-group-item-action">Новые</li></a>
+                        <a href="{% url 'Posts:boobs' %}"><li class="list-group-item list-group-item-action">Большой грудью</li></a>
                         <li class="list-group-item list-group-item-action">Vestibulum at eros</li>
                     </ul>
                 </div>
@@ -21,8 +26,10 @@
             <div class="col-md-9">
                 <div class="row">
                         {% for t in post %}
+{#                            {% for f in service %}#}
                             {% if t.user_active and t.admin_active %}
-                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 " style="">
+                                <a href="{% url 'Posts:detail' id=t.id %}">
+                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 mb-4" style="">
                                 <div class="article bg-light p-1 hover-shadow hover-border">
                                     <div class="top">
                                         <div class="header p-1 border-bottom-1"><label href="">{{ t.name }}</label><div class="float-right">{{ t.age }} <span class="text-muted">лет</span></div>
@@ -57,8 +64,8 @@
                                     <div class="body">
                                         <div class="col border-bottom pb-1 mb-1 mt-1">
                                             <table class="col justify-content-center">
-                                                <tbody>
-                                                <tr>
+                                                <tbody class=" col justify-content-center">
+                                                <tr class="class="justify-content-center"">
                                                     <td><i>Рост: </i></td>
                                                     <td><i>Вес: </i></td>
                                                     <td><i>Грудь: </i></td>
@@ -81,18 +88,18 @@
                                                 <tbody>
                                                 <tr class="border-bottom">
                                                     <td>1-Час</td>
-                                                    <td>{{ t.outside_1 }}</td>
-                                                    <td>{{ t.appart_1 }}</td>
+                                                    <td>{{ t.id|outside_1 }}</td>
+                                                    <td>{{ t.id|appart_1 }}</td>
                                                 </tr>
                                                 <tr class="border-bottom">
                                                     <td scope="row border-bottom">2-Час</td>
-                                                    <td>{{ t.outside_1 }}</td>
-                                                    <td>{{ t.appart_2 }}</td>
+                                                    <td>{{ t.id|outside_2 }}</td>
+                                                    <td>{{ t.id|appart_2 }}</td>
                                                 </tr>
                                                 <tr class="border-bottom">
                                                     <td scope="row">Ночь</td>
-                                                    <td>{{ t.outside_nigth }}</td>
-                                                    <td>{{ t.appart_night }}</td>
+                                                    <td>{{ t.id|outside_night }}</td>
+                                                    <td>{{ t.id|appart_night }}</td>
                                                 </tr>
                                                 </tbody>
                                             </table>
@@ -103,7 +110,9 @@
                                     </div>
                                 </div>
                             </div>
+                                </a>
                             {% endif %}
+{#                            {% endfor %}#}
                         {% endfor %}
                     </div>
                 </div>

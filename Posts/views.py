@@ -1,6 +1,11 @@
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from datetime import *
+
+from Comment.commentsForm import CommentForm
+from Comment.models import Comment
+from Service.models import Service
+from Service.serviceForm import ServiceForm
 from .activate import *
 import time
 import threading
@@ -8,7 +13,6 @@ import threading
 from Posts.forms import *
 from Posts.accauntForm import *
 from Posts.models import Post
-
 
 
 def post_list(request):
@@ -26,12 +30,20 @@ def post_list(request):
 def post_create(request):
     title = 'Новая анкета'
     form = pForm(request.POST or None, request.FILES or None)
-    if form.is_valid():
-        ins = form.save(commit=False)
+    sform = ServiceForm(request.POST or None)
+    post_id = None
+    if form.is_valid() and sform.is_valid():
+        mInstance = form.save(commit=False)
+        mInstance.user = request.user
+        mInstance.save()
+        print(post_id)
+        ins = sform.save(commit=False)
+        ins.post = mInstance
         ins.save()
     context = {
         'title': title,
-        'form': form
+        'form':form,
+        'sform':sform
     }
     return render(request, "post_form.html", context)
 
@@ -39,13 +51,20 @@ def post_create(request):
 def post_update(request, id=None):
     title = 'Изменения'
     instance = get_object_or_404(Post, id=id)
+    serv_instance = get_object_or_404(Service, post_id=id)
     form = pForm(request.POST or None, request.FILES or None, instance=instance)
-    if form.is_valid():
-        ins = form.save(commit=False)
+    sform = ServiceForm(request.POST or None, instance=serv_instance)
+    if form.is_valid() and sform.is_valid():
+        mInstance = form.save(commit=False)
+        mInstance.user = request.user
+        mInstance.save()
+        ins = sform.save(commit=False)
+        ins.post = mInstance
         ins.save()
     context = {
         'title': title,
         'form': form,
+        'sform':sform,
         'instance': instance
     }
     return render(request, "post_form.html", context)
@@ -53,6 +72,7 @@ def post_update(request, id=None):
 
 def post_detail(request, id=None):
     instance = get_object_or_404(Post, id=id)
+    serviceInstance = get_object_or_404(Service, post_id=id)
     if not request.user.is_authenticated:
         if not (instance.user_active and instance.admin_active):
             print("Not activate")
@@ -60,10 +80,44 @@ def post_detail(request, id=None):
     else:
         if request.user.id != instance.user_id:
             raise Http404
+
+    comment = Comment.objects.filter_by_instance(instance)
+    initial_data = {
+        "content_type": instance.get_content_type,
+        "object_id": instance.id
+    }
+    comment_form = CommentForm(request.POST or None, initial=initial_data)
+    if comment_form.is_valid():
+        c_type = comment_form.cleaned_data.get("content_type")
+        content_type = ContentType.objects.get(model=c_type)
+        obj_id = comment_form.cleaned_data.get('object_id')
+        content_data = comment_form.cleaned_data.get("content")
+        # parent_id = request.POST.get("parent_id")
+        parent_obj = None
+        try:
+            parent_id = int(request.POST.get("parent_id"))
+        except:
+            parent_id = None
+
+        if parent_id:
+            parent_qs = Comment.objects.filter(id=parent_id)
+            if parent_qs.exists() and parent_qs.count() == 1:
+                parent_obj = parent_qs.first()
+
+        new_comment, created = Comment.objects.get_or_create(
+            user=request.user,
+            content_type=content_type,
+            object_id=obj_id,
+            content=content_data,
+            parent=parent_obj,
+        )
+        return HttpResponseRedirect(new_comment.content_object.get_absolute_url())
+    comments = instance.comments
     context = {
         "instance": instance,
-        # "comments": comments,
-        # "comment_form": comment_form,
+        'serv_instance':serviceInstance,
+        "comments": comments,
+        "comment_form": comment_form,
     }
     return render(request, "detail.html", context)
 
@@ -80,3 +134,52 @@ def active_state(request, id):
         redirect('Posts:profile')
 
     return redirect('Posts:profile')
+
+
+def filter_excpencive(request):
+    title = 'Главная'
+    instance = Service.objects.all().select_related('post').order_by('appart_1')
+    post = Post.objects.all()
+    # title = "Войти"
+    count_to_end_active()
+    context = {
+        "title": title,
+        'post': instance,
+    }
+    return render(request, "post_list.html", context)
+
+def yunger(request):
+    title = 'Главная'
+    instance = Service.objects.all().select_related('post').order_by('appart_1')
+    post = Post.objects.all().order_by('age')
+    # title = "Войти"
+    count_to_end_active()
+    context = {
+        "title": title,
+        'post': post,
+    }
+    return render(request, "post_list.html", context)
+
+def new(request):
+    title = 'Главная'
+    instance = Service.objects.all().select_related('post').order_by('appart_1')
+    post = Post.objects.all().order_by('timestamp')
+    # title = "Войти"
+    count_to_end_active()
+    context = {
+        "title": title,
+        'post': post,
+    }
+    return render(request, "post_list.html", context)
+
+def big_boobs(request):
+    title = 'Главная'
+    instance = Service.objects.all().select_related('post').order_by('appart_1')
+    post = Post.objects.all().filter(boob__gt=2).order_by('boob')
+    # title = "Войти"
+    count_to_end_active()
+    context = {
+        "title": title,
+        'post': post,
+    }
+    return render(request, "post_list.html", context)

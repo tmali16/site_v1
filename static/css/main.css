@@ -136,6 +136,12 @@ body{
 .carousel-indicators .active{
     width: 30px;
 }
+.carousel-item{
+    height: 650px !important;
+}
+.carousel-item {
+    height: 600px !important;
+}
 .image-box img{
     /*display: block;*/
     width:100%;
@@ -147,4 +153,19 @@ body{
 }
 .modal-header .close {
 	padding: .5rem;
+}
+.carousel-indicator{
+    background-color: #adadad;
+    justify-content: center;
+    display: flex;
+    list-style: none;
+    height: 100%;
+}
+.carousel-indicator img{
+    padding: 5px;
+    height: 50px;
+    width: 50px;
+}
+.brd{
+    border-left: 2px solid #005cbf !important;
 }

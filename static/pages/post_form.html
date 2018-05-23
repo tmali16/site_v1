@@ -3,14 +3,14 @@
     <br>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-12 col-lg-10 col-xs-12 col-sm">
+            <div class="col-md-12 col-lg-7 col-xs-12 col-sm">
                 <br>
                 <div class="bg-light  shadow">
                     <div class="header p-4 "><h1>Новая анкета</h1></div>
                     <form action="" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="row justify-content-center">
-                            <div class="col-md-6 col-sm-8 col-lg-6 col-xs-6">
+                            <div class="col-md-6 col-sm-8 col-lg-10 col-xs-6">
                                 <div class="form-group form-group-sm p-2">
                                     <label for="{{ form.name.id_for_label }}"
                                            class="inline-group mr-3">{{ form.name.label }} </label>{{ form.name }}
@@ -31,29 +31,160 @@
                                     <div class="panel">
                                         <div class="panel-header bg-info mt-3 p-2"><label>Foto</label></div>
                                         <div class="panel-body border p-2">
-                                            {% if instance.image_1 %}
-                                                <a href="{{ instance.image_1.url }}">instance.image_1.url</a> {% endif %}
-                                            <label for="{{ form.image_1.id_for_label }}"
-                                                   class="mr-2">{{ form.image_1.label }}</label>{{ form.image_1 }}
-                                            {% if instance.image_2 %}
-                                                <a href="{{ instance.image_2.url }}">instance.image_2.url</a> {% endif %}
-                                            <label for="{{ form.image_2.id_for_label }}"
-                                                   class="mr-2">{{ form.image_2.label }}</label>{{ form.image_2 }}
-                                            {% if instance.image_3 %}
-                                                <a href="{{ instance.image_3.url }}">instance.image_3.url</a> {% endif %}
-                                            <label for="{{ form.image_3.id_for_label }}"
-                                                   class="mr-2">{{ form.image_3.label }}</label>{{ form.image_3 }}
-                                            {% if instance.image_4 %}
-                                                <a href="{{ instance.image_4.url }}">instance.image_4.url</a> {% endif %}
-                                            <label for="{{ form.image_4.id_for_label }}"
-                                                   class="mr-2">{{ form.image_4.label }}</label>{{ form.image_4 }}
-                                            {% if instance.image_5 %}
-                                                <a href="{{ instance.image_5.url }}">instance.image_5.url</a> {% endif %}
-                                            <label for="{{ form.image_5.id_for_label }}"
-                                                   class="mr-2">{{ form.image_5.label }}</label>{{ form.image_5 }}
+                                        <table>
+                                            <tbody>
+                                            <tr>
+                                                <td>{{ form.image_1 }}</td>
+                                                <td><label for="{{ form.image_1.id_for_label }}" class="mr-3">{{ form.image_1.label|truncatechars:10 }}</label></td>
+{#                                                <td>{% if instance.image_1 %}<a href="{{ instance.image_1.url}}">{{instance.image_1.url|truncatechars:9 }}</a></td>{% endif %}#}
+                                            </tr>
+                                            <tr>
+                                                <td>{{ form.image_2 }}</td>
+                                                <td><label for="{{ form.image_2.id_for_label }}" class="mr-3">{{ form.image_2.label|truncatechars:9 }}</label></td>
+{#                                                <td>{% if instance.image_2 %}<a href="{{ instance.image_2.url }}">instance.image_2.url|truncate</a> {% endif %}</td>#}
+                                            </tr>
+                                            <tr>
+                                                <td>{{ form.image_3 }}</td>
+                                                <td><label for="{{ form.image_3.id_for_label }}" class="mr-3">{{ form.image_3.label }}</label></td>
+{#                                                <td>{% if instance.image_3 %}<a href="{{ instance.image_3.url }}">instance.image_3.url|truncate</a>{% endif %}</td>#}
+                                            </tr>
+                                            <tr>
+                                                <td>{{ form.image_4 }}</td>
+                                                <td><label for="{{ form.image_4.id_for_label }}" class="mr-3">{{ form.image_4.label }}</label></td>
+{#                                                <td>{% if instance.image_4 %}<a href="{{ instance.image_4.url }}">instance.image_4.url|truncate</a> {% endif %}</td>#}
+                                            </tr>
+                                            <tr>
+                                                <td>{{ form.image_5 }}</td>
+                                                <td><label for="{{ form.image_5.id_for_label }}" class="mr-3">{{ form.image_5.label }}</label></td>
+                                                <td>{% if instance.image_5 %}<a href="{{ instance.image_5.url }}">instance.image_5.url|truncate</a> {% endif %}</td>
+                                            </tr>
+
+                                            </tbody>
+                                        </table>
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="header  bg-info p-2 text-white">Аппартамент</div>
+                                <div class="appart border p-2 mb-2">
+                                    <table class="col">
+                                        <tbody class="table table-borderless">
+                                        <tr>
+                                            <td class=""><label for="{{ sform.appart_1.id_for_label }}"class="mr-3">1-Час</label></td>
+                                            <td>{{ sform.appart_1 }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><label for="{{ sform.appart_2.id_for_label }}" class="mt-2 mb-0">2-Час</label></td>
+                                            <td>{{ sform.appart_2 }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><label for="{{ sform.appart_naigth.id_for_label }}" class="mt-2 mb-0">Ночь</label></td>
+                                            <td>{{ sform.appart_naigth }}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+
+
+                                </div>
+                                <div class="header border bg-info border p-2 text-white">Выезд</div>
+                                <div class="appart border">
+                                    <div class="appart  p-3">
+                                        <table class="col">
+                                            <tbody class="table table-borderless">
+                                            <tr>
+                                                <td><label for="{{ sform.outside_1.id_for_label }}" class="mb-0">1-Час</label></td>
+                                                <td>{{ sform.outside_1 }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><label for="{{ sform.outside_2.id_for_label }}" class="mt-2 mb-0">2-Час</label></td>
+                                                <td>{{ sform.outside_2 }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><label for="{{ sform.outside_nigth.id_for_label }}" class="mt-2 mb-0">Ночь</label></td>
+                                                <td>{{ sform.outside_nigth }}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                                <div class="header bg-info p-2 text-white">Основные услуги</div>
+                                <div class="form-check border pt-2 mb-3">{{ sform.content_type }}{{ service_form.object_id }}
+                                    {{ sform.main_classic }}<label for="{{ sform.main_classic.id_for_label }}" class="ml-3">{{ sform.main_classic.label }}</label><br>
+                                    {{ sform.main_blowJob_w_condom }}<label for="{{ form.main_blowJob_w_condom.id_for_label }}" class="ml-3">{{ sform.main_blowJob_w_condom.label }}</label><br>
+                                    {{ sform.main_cunni }}<label for="{{ sform.main_cunni.id_for_label }}" class="ml-3">{{ sform.main_cunni.label }}</label><br>
+                                    {{ sform.main_group_sex }}<label for="{{ sform.main_group_sex.id_for_label }}" class="ml-3">{{ sform.main_group_sex.label }}</label><br>
+                                    {{ sform.main_lesbi_lesbi }}<label for="{{ sform.main_lesbi_lesbi.id_for_label }}" class="ml-3">{{ sform.main_lesbi_lesbi.label }}</label><br>
+                                    <div class="main-pr pb-2">
+                                        <table class="col">
+                                            <tbody>
+                                            <tr>
+                                                <td>{{ sform.mbr }}</td>
+                                                <td><label for="{{ sform.mbr.id_for_label }}" class="">{{ sform.mbr.label }}</label></td>
+{#                                                <td><label for="{{ sform.mbr.id_for_label }}" class=""></label></td>#}
+                                                <td>{{ sform.mbr_price }}</td>
+                                                <td><p></p></td>
+                                            </tr>
+                                            <tr>
+                                                <td>{{ sform.anal_sex }}</td>
+                                                <td><label for="{{ sform.anal_sex.id_for_label }}" class="">{{ sform.anal_sex.label }}</label></td>
+                                                <td>{{ sform.anal_sex_price }}</td>
+                                                <td><label for="" class="pr-1 pl-1"></label></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="header bg-info p-2 text-white">Дополнительные услуги</div>
+                                <div class="form-check mt-0 border mb-2">
+                                    {{ sform.dop_end_mouth }}<label for="{{ sform.dop_end_mouth.id_for_label }}" class="ml-3 mt-2">{{ sform.dop_end_mouth.label }}</label><br>
+                                    {{ sform.dop_end_face }}<label for="{{ sform.dop_end_face.id_for_label }}" class="ml-3">{{ sform.dop_end_face.label }}</label><br>
+                                    {{ sform.dop_glub_minet }}<label for="{{ sform.dop_glub_minet.id_for_label }}" class="ml-3">{{ sform.dop_glub_minet.label }}</label><br>
+                                    {{ sform.dop_toys }}<label for="{{ sform.dop_toys.id_for_label }}" class="ml-3">{{ sform.dop_toys.label }}</label><br>
+                                    {{ sform.dop_role_game }}<label for="{{ sform.dop_role_game.id_for_label }}" class="ml-3">{{ sform.dop_role_game.label }}</label><br>
+                                    {{ sform.dop_couple_service }}<label for="{{ sform.dop_couple_service.id_for_label }}" class="ml-3">{{ sform.dop_couple_service.label }}</label><br>
+                                    {{ sform.dop_video }}<label for="{{ sform.dop_video.id_for_label }}" class="ml-3">{{ sform.dop_video.label }}</label><br>
+                                    {{ sform.dop_company }}<label for="{{ sform.dop_company.id_for_label }}" class="ml-3">{{ sform.dop_company.label }}</label><br>
+                                </div>
+                                <div class="header bg-info p-2 text-white">Массаж</div>
+                                <div class="form-check mt-0 border mb-2">
+                                    {{ sform.massage_relax }}<label for="{{     sform.massage_relax.id_for_label }}" class="ml-3">{{ sform.massage_relax.label }}</label><br>
+                                    {{ sform.massage_classic }}<label for="{{   sform.massage_classic.id_for_label }}" class="ml-3">{{ sform.massage_classic.label }}</label><br>
+                                    {{ sform.massage_profi }}<label for="{{     sform.massage_profi.id_for_label }}" class="ml-3">{{ sform.massage_profi.label }}</label><br>
+                                    {{ sform.massage_tiski }}<label for="{{     sform.massage_tiski.id_for_label }}" class="ml-3">{{ sform.massage_tiski.label }}</label><br>
+                                    {{ sform.massage_prostat }}<label for="{{   sform.massage_prostat.id_for_label }}" class="ml-3">{{ sform.massage_prostat.label }}</label><br>
+                                    {{ sform.massage_erotic }}<label for="{{    sform.massage_erotic.id_for_label }}" class="ml-3">{{ sform.massage_erotic.label }}</label><br>
+                                    {{ sform.massage_sakura }}<label for="{{    sform.massage_sakura.id_for_label }}" class="ml-3">{{ sform.massage_sakura.label }}</label><br>
+                                </div>
+                                <div class="header bg-info p-2 text-white">Стриптиз</div>
+                                <div class="form-check mt-0 border mb-2">
+                                    {{ sform.dance_profi }}<label for="{{        sform.dance_profi.id_for_label }}" class="ml-3">{{       sform.dance_profi.label }}</label><br>
+                                    {{ sform.dance_NoProfi }}<label for="{{      sform.dance_NoProfi.id_for_label }}" class="ml-3">{{     sform.dance_NoProfi.label }}</label><br>
+                                    {{ sform.dance_lesbi_show }}<label for="{{   sform.dance_lesbi_show.id_for_label }}" class="ml-3">{{  sform.dance_lesbi_show.label }}</label><br>
+                                    {{ sform.dance_lisbi }}<label for="{{        sform.massage_tiski.id_for_label }}" class="ml-3">{{     sform.dance_lisbi.label }}</label><br>
+                                </div>
+                                <div class="header bg-info p-2 text-white">Садо-Мазо</div>
+                                <div class="form-check mt-0 border mb-2">
+                                    {{ sform.sado_bandaj }}<label for="{{    sform.sado_bandaj.id_for_label }}" class="ml-3">{{       sform.sado_bandaj.label }}</label><br>
+                                    {{ sform.sado_gospoja }}<label for="{{   sform.sado_gospoja.id_for_label }}" class="ml-3">{{      sform.sado_gospoja.label }}</label><br>
+                                    {{ sform.sado_rabyn }}<label for="{{     sform.sado_rabyn.id_for_label }}" class="ml-3">{{        sform.sado_rabyn.label }}</label><br>
+                                    {{ sform.sado_dominant }}<label for="{{  sform.sado_dominant.id_for_label }}" class="ml-3">{{     sform.sado_dominant.label }}</label><br>
+                                    {{ sform.sado_porka }}<label for="{{     sform.sado_porka.id_for_label }}" class="ml-3">{{        sform.sado_porka.label }}</label><br>
+                                    {{ sform.sado_fetish }}<label for="{{    sform.sado_fetish.id_for_label }}" class="ml-3">{{       sform.sado_fetish.label }}</label><br>
+                                    {{ sform.sado_trampling }}<label for="{{ sform.sado_trampling.id_for_label }}" class="ml-3">{{    sform.sado_trampling.label }}</label><br>
+                                </div>
+                                <div class="header bg-info p-2 text-white">Экстрим</div>
+                                <div class="form-check mt-0 border mb-2">
+                                    {{ sform.extrim_anilingus }}<label for="{{       sform.extrim_anilingus.id_for_label }}" class="ml-3">{{      sform.extrim_anilingus.label }}</label><br>
+                                    {{ sform.extrim_dojd_out }}<label for="{{        sform.extrim_dojd_out.id_for_label }}" class="ml-3">{{       sform.extrim_dojd_out.label }}</label><br>
+                                    {{ sform.extrim_dojd_in }}<label for="{{         sform.extrim_dojd_in.id_for_label }}" class="ml-3">{{        sform.extrim_dojd_in.label }}</label><br>
+                                    {{ sform.extrim_strapon }}<label for="{{         sform.extrim_strapon.id_for_label }}" class="ml-3">{{        sform.extrim_strapon.label }}</label><br>
+                                    {{ sform.extrim_fisting_anal }}<label for="{{    sform.extrim_fisting_anal.id_for_label }}" class="ml-3">{{   sform.extrim_fisting_anal.label }}</label><br>
+                                    {{ sform.extrim_fisting_vagin }}<label for="{{   sform.extrim_fisting_vagin.id_for_label }}" class="ml-3">{{  sform.extrim_fisting_vagin.label }}</label><br>
+                                </div>
+
                                 <hr>
                                 <input type="submit" value="NEXT" class="btn btn-primary content m-2">
                             </div>

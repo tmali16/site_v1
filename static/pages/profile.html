@@ -20,7 +20,7 @@
     <div class="row justify-content-center">
         <div class="col-md-9 mt-5">
             {% if posts.count > 0 %}
-                <div class="profile bg-light p-5">
+                <div class="profile bg-light p-2">
                     <h1>Ваши анкеты</h1>
                     <a href="{% url 'Posts:create' %}" class="btn btn-outline-primary">Добавить анкету</a>
 {#                    <hr>#}
@@ -39,7 +39,7 @@
                                 <tr class="text-center">
                                     <td scope="row"><a href="{% url 'Posts:detail' id=post.id%}" class="">{{ post.id }}</a></td>
                                     <td>{{ post.name }}</td>
-                                    <td>{{ post.end_date|count_day}} </td>
+                                    <td>{% if post.end_date %}{{ post.end_date|count_day}} {% else %} 0 {% endif %}</td>
                                     <td>{% if post.user_active %}<a href="{% if not post.admin_active %}#{% else %}{% url 'Posts:active_state' id=post.id%}{% endif %}" class="{% if not post.admin_active %}disabled {% endif %}">{% if not post.admin_active %}Включить{% else %}Отключить{% endif %} </a>{% else %}<a href="{% if not post.admin_active %}#{% else %}{% url 'Posts:active_state' id=post.id%}{% endif %}" class="{% if not post.admin_active %}disabled {% endif %}">{% if not post.admin_active %}Включить{% else %}Включить{% endif %} </a>{% endif %}
                                     <td><a href="{% url 'Posts:edit' id=post.id%}" class="btn btn-info">Изменить</a><span> </span><a href="" class="btn btn-danger">Удалить</a></td>
                                 </tr>
