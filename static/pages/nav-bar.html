@@ -7,32 +7,31 @@
                         aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="nav collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
                         <a class="nav-item nav-link active" href="{% url 'Posts:list' %}">Home <span class="sr-only">(current)</span></a>
                         <a class="nav-item nav-link" href="#">Features</a>
                         <a class="nav-item nav-link" href="#">Pricing</a>
-                        <a class="nav-item nav-link disabled" href="#">Disabled</a>
                     </div>
                 </div>
-                {#                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">#}
-                <div class="navbar-nav float-right" class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="nav navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="nav justify-content-end">
                     {% if  request.user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'Posts:profile' %}" >Мой профиль</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="{% url 'Posts:logout'%}" >Выйти</a>
-                        </li>
+                        {#                            <li class="nav-item ">#}
+                        <a class="nav-link" href="{% url 'Posts:profile' %}" >Мой профиль</a>
+                        {#                            </li>#}
+                        {#                            <li class="nav-item ">#}
+                        <a class="nav-link" href="{% url 'Posts:logout'%}" >Выйти</a>
+                        {#                            </li>#}
                     {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'Posts:login' %}">Войти</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="{% url 'Posts:register' %}">Регистрация</a>
-                        </li>
+                        {#                            <li class="nav-item ">#}
+                        <a class="nav-link" href="{% url 'Posts:login' %}">Войти</a>
+                        {#                            </li>#}
+                        {#                            <li class="nav-item ">#}
+                        <a class="nav-link" href="{% url 'Posts:register' %}">Регистрация</a>
+                        {#                            </li>#}
                     {% endif %}
-                    {#                    </div>#}
+                    </div>
                 </div>
             </div>
         </nav>

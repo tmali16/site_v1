@@ -1,3 +1,4 @@
+from django.core.paginator import *
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from datetime import *
@@ -15,14 +16,25 @@ from Posts.accauntForm import *
 from Posts.models import Post
 
 
+
 def post_list(request):
     title = "Главная"
     post = Post.objects.all()
+    paginator = Paginator(post, 1) # Show 25 contacts per page
+    page = request.GET.get('page')
+
+    try:
+        posts =  paginator.get_page(page)
+    except PageNotAnInteger:
+        posts = paginator.get_page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
     # title = "Войти"
     count_to_end_active()
     context = {
         "title": title,
         'post': post,
+        'posts_page': posts
     }
     return render(request, "post_list.html", context)
 
@@ -73,13 +85,12 @@ def post_update(request, id=None):
 def post_detail(request, id=None):
     instance = get_object_or_404(Post, id=id)
     serviceInstance = get_object_or_404(Service, post_id=id)
-    if not request.user.is_authenticated:
-        if not (instance.user_active and instance.admin_active):
-            print("Not activate")
-            raise Http404
-    else:
-        if request.user.id != instance.user_id:
-            raise Http404
+
+    if not (instance.user_active and instance.admin_active):
+        print("Not activate")
+        raise Http404
+    # if request.user.id != instance.user_id:
+    #     raise Http404
 
     comment = Comment.objects.filter_by_instance(instance)
     initial_data = {
@@ -125,14 +136,13 @@ def post_detail(request, id=None):
 # ------------------------------------------------------------------------------------
 
 def active_state(request, id):
-    inst = get_object_or_404(Post, id=id).user_active
-    if inst:
+    inst = get_object_or_404(Post, id=id)
+    if inst.user_active:
         Post.objects.filter(id=id).update(user_active=False)
         redirect('Posts:profile')
     else:
         Post.objects.filter(id=id).update(user_active=True)
         redirect('Posts:profile')
-
     return redirect('Posts:profile')
 
 

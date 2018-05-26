@@ -2,7 +2,9 @@
 
 /* Large Devices, Wide Screens */
 @media only screen and (max-width : 1200px) {
-
+	.filter-btn{
+		display: none;
+	}
 }
 
 /* Medium Devices, Desktops */
@@ -10,6 +12,15 @@
 .comments{
 	display: none;
 }
+.filter-btn{
+	display: none;
+}
+.sm-sort{
+	display: none;
+}
+	.left-bar{
+		display: block;
+	}
 }
 
 /* Small Devices, Tablets */
@@ -36,7 +47,15 @@
 		-ms-animation: none !important;
 		animation: none !important;
 	}
-
+	.filter-btn{
+		display: block;
+	}
+	.sm-sort{
+		display: block;
+	}
+	.left-bar{
+		display: none;
+	}
 }
 
 /* Extra Small Devices, Phones */
@@ -69,7 +88,12 @@
 
 /* Medium Devices, Desktops */
 @media only screen and (min-width : 992px) {
-
+	.filter-btn{
+		display: none;
+	}
+	.sm-sort{
+		display: none;
+	}
 }
 
 /* Large Devices, Wide Screens */

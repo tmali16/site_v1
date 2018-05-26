@@ -10,3 +10,4 @@ admin.site.register(eyes)
 admin.site.register(types)
 
 admin.site.register(Service)
+admin.site.register(Comment)

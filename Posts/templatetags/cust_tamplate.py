@@ -2,6 +2,7 @@ from django import template
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
 
+from Comment.models import Comment
 from Posts.models import Post
 from Service.models import Service
 
@@ -9,31 +10,60 @@ register = template.Library()
 
 @register.filter
 def appart_1(id):
-    res = get_object_or_404(Service, post_id=id)
-    return res.appart_1
+    if get_object_or_404(Service, post_id=id).appart_1 != '':
+        res = get_object_or_404(Service, post_id=id).appart_1
+    else:
+        res = '-'
+    return res
 
 @register.filter
 def appart_2(id):
-    print('apprt_2 {0}'.format(id))
-    res = get_object_or_404(Service, post_id=id)
-    return res.appart_2
+    if get_object_or_404(Service, post_id=id).appart_2 != '':
+        res = get_object_or_404(Service, post_id=id).appart_2
+    else:
+        res = '-'
+    return res
 @register.filter
 def appart_night(id):
-    print('appart_night {0}'.format(id))
-    res = get_object_or_404(Service, post_id=id)
-    return res.appart_naigth
+    if get_object_or_404(Service, post_id=id).appart_naigth != '':
+        res = get_object_or_404(Service, post_id=id).appart_naigth
+    else:
+        res = '-'
+    return res
+
 @register.filter
 def outside_1(id):
-    res = get_object_or_404(Service, post_id=id)
-    return res.outside_1
+    if get_object_or_404(Service, post_id=id).outside_1 != '':
+        res = get_object_or_404(Service, post_id=id).outside_1
+    else:
+        res = '-'
+    return res
+
 @register.filter
 def outside_2(id):
-    res = get_object_or_404(Service, post_id=id)
-    return res.outside_2
+    if get_object_or_404(Service, post_id=id).outside_2 != '':
+        res = get_object_or_404(Service, post_id=id).outside_2
+    else:
+        res = '-'
+    return res
+
 @register.filter
 def outside_night(id):
-    res = get_object_or_404(Service, post_id=id)
-    return res.outside_nigth
+    if get_object_or_404(Service, post_id=id).outside_nigth != '':
+        res = get_object_or_404(Service, post_id=id).outside_nigth
+    else:
+        res = '-'
+    return res
+
+
+@register.filter
+def comment_count(id):
+    if Comment.objects.filter(object_id=id).count() > 0:
+        res = Comment.objects.filter(object_id=id).count()
+    else:
+        res = '0'
+    return res
+
 
 @register.filter
 def count_day(td):
