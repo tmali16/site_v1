@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block body %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-5 col-sm col-lg-5 col-xs-5 bg-light pt-4">
+                <div class="header border-bottom">
+                    <label for="" class="h3">
+                        {{ title }}
+                    </label>
+                </div>
+                <form action="" method="post">{% csrf_token %}
+                    <div class="modal-body">
+                        <div class="form-group form-group-sm">
+                            {{ authForm.as_p }}
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-primary" value="{{ btn }}" id="log_in_btn">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

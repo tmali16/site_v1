@@ -16,7 +16,6 @@ from Posts.accauntForm import *
 from Posts.models import Post
 
 
-
 def post_list(request):
     title = "Главная"
     post = Post.objects.all()
@@ -52,12 +51,26 @@ def post_create(request):
         ins = sform.save(commit=False)
         ins.post = mInstance
         ins.save()
+        redirect('Posts:create2')
     context = {
         'title': title,
         'form':form,
         'sform':sform
     }
     return render(request, "post_form.html", context)
+
+
+def post_create2(request):
+    title = 'Новая анкета'
+    form = ServiceForm(request.POST or None)
+    if form.is_valid():
+        ins = form.save(commit=False)
+        ins.save()
+    context = {
+        'title': title,
+        'form': form
+    }
+    return render(request, "service_form.html", context)
 
 
 def post_update(request, id=None):

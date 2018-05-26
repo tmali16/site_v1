@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% block body %}
+    <br>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 col-lg-7 col-xs-12 col-sm">
+                <br>
+                <div class="bg-light  shadow">
+                    <div class="header p-4 "><h1>Новая анкета</h1></div>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="row justify-content-center">
+                            <div class="col-md-6 col-sm-8 col-lg-10 col-xs-6">
+                                <div class="form-group form-group-sm p-2">
+                                    <div class="header  bg-info p-2 text-white">Аппартамент</div>
+                                    <div class="appart border p-2 mb-2">
+                                        <label for="{{ form.appart_1.id_for_label }}"
+                                               class="mb-0">1-Час</label>{{ form.appart_1 }}
+                                        <label for="{{ form.appart_2.id_for_label }}"
+                                               class="mt-2 mb-0">2-Час</label>{{ form.appart_2 }}
+                                        <label for="{{ form.appart_naigth.id_for_label }}"
+                                               class="mt-2 mb-0">Ночь</label>{{ form.appart_naigth }}
+                                    </div>
+                                    <div class="header border bg-info border p-2 text-white">Выезд</div>
+                                    <div class="appart border">
+                                        <div class="appart  p-3">
+                                            <label for="{{ form.outside_1.id_for_label }}"
+                                                   class="mb-0">1-Час</label>{{ form.outside_1 }}
+                                            <label for="{{ form.outside_2.id_for_label }}"
+                                                   class="mt-2 mb-0">2-Час</label>{{ form.outside_2 }}
+                                            <label for="{{ form.outside_nigth.id_for_label }}"
+                                                   class="mt-2 mb-0">Ночь</label>{{ form.outside_nigth }}
+                                        </div>
+                                    </div>
+
+{#-------------------------------------------------------------------------------------------------------------------------#}
+                                    <div class="header bg-info p-2 text-white">Основные услуги</div>
+                                    <div class="form-check border pt-2 mb-3">{{ form.content_type }}{{ service_form.object_id }}
+                                        {{ form.main_classic }}<label for="{{ form.main_classic.id_for_label }}" class="ml-3">{{ form.main_classic.label }}</label><br>
+                                        {{ form.main_blowJob_w_condom }}<label for="{{ form.main_blowJob_w_condom.id_for_label }}" class="ml-3">{{ form.main_blowJob_w_condom.label }}</label><br>
+                                        {{ form.main_cunni }}<label for="{{ form.main_cunni.id_for_label }}" class="ml-3">{{ form.main_cunni.label }}</label><br>
+                                        {{ form.main_group_sex }}<label for="{{ form.main_group_sex.id_for_label }}" class="ml-3">{{ form.main_group_sex.label }}</label><br>
+                                        {{ form.main_lesbi_lesbi }}<label for="{{ form.main_lesbi_lesbi.id_for_label }}" class="ml-3">{{ form.main_lesbi_lesbi.label }}</label><br>
+                                        <div class="main-pr">
+                                            {{ form.mbr }}<label for="{{ form.mbr.id_for_label }}" class="ml-3 form">{{ form.mbr.label }}</label>
+                                            <label for="{{ form.mbr.id_for_label }}" class="ml-4"></label>
+                                            {{ form.mbr_price }}<br>
+
+                                            {{ form.anal_sex }}<label for="{{ form.anal_sex.id_for_label }}" class="ml-3 mr-3">{{ form.anal_sex.label }}</label>
+                                            <label for="{{ form.anal_sex.id_for_label }}" class="pr-0 ml-3" >{{ form.anal_sex_price }}</label>
+                                        </div>
+                                    </div>
+                                    <div class="header bg-info p-2 text-white">Дополнительные услуги</div>
+                                    <div class="form-check mt-0 border mb-2">
+                                        {{ form.dop_end_mouth }}<label for="{{ form.dop_end_mouth.id_for_label }}" class="ml-3">{{ form.dop_end_mouth.label }}</label><br>
+                                        {{ form.dop_end_face }}<label for="{{ form.dop_end_face.id_for_label }}" class="ml-3">{{ form.dop_end_face.label }}</label><br>
+                                        {{ form.dop_glub_minet }}<label for="{{ form.dop_glub_minet.id_for_label }}" class="ml-3">{{ form.dop_glub_minet.label }}</label><br>
+                                        {{ form.dop_toys }}<label for="{{ form.dop_toys.id_for_label }}" class="ml-3">{{ form.dop_toys.label }}</label><br>
+                                        {{ form.dop_role_game }}<label for="{{ form.dop_role_game.id_for_label }}" class="ml-3">{{ form.dop_role_game.label }}</label><br>
+                                        {{ form.dop_couple_service }}<label for="{{ form.dop_couple_service.id_for_label }}" class="ml-3">{{ form.dop_couple_service.label }}</label><br>
+                                        {{ form.dop_video }}<label for="{{ form.dop_video.id_for_label }}" class="ml-3">{{ form.dop_video.label }}</label><br>
+                                        {{ form.dop_company }}<label for="{{ form.dop_company.id_for_label }}" class="ml-3">{{ form.dop_company.label }}</label><br>
+                                    </div>
+                                    <div class="header bg-info p-2 text-white">Массаж</div>
+                                    <div class="form-check mt-0 border mb-2">
+                                        {{ form.massage_relax }}<label for="{{ form.massage_relax.id_for_label }}" class="ml-3">{{ form.massage_relax.label }}</label><br>
+                                        {{ form.massage_classic }}<label for="{{ form.massage_classic.id_for_label }}" class="ml-3">{{ form.massage_classic.label }}</label><br>
+                                        {{ form.massage_profi }}<label for="{{ form.massage_profi.id_for_label }}" class="ml-3">{{ form.massage_profi.label }}</label><br>
+                                        {{ form.massage_tiski }}<label for="{{ form.massage_tiski.id_for_label }}" class="ml-3">{{ form.massage_tiski.label }}</label><br>
+                                        {{ form.massage_prostat }}<label for="{{ form.massage_prostat.id_for_label }}" class="ml-3">{{ form.massage_prostat.label }}</label><br>
+                                        {{ form.massage_erotic }}<label for="{{ form.massage_erotic.id_for_label }}" class="ml-3">{{ form.massage_erotic.label }}</label><br>
+                                        {{ form.massage_sakura }}<label for="{{ form.massage_sakura.id_for_label }}" class="ml-3">{{ form.massage_sakura.label }}</label><br>
+                                    </div>
+                                    <div class="header bg-info p-2 text-white">Стриптиз</div>
+                                    <div class="form-check mt-0 border mb-2">
+                                        {{ form.dance_profi }}<label for="{{ form.dance_profi.id_for_label }}" class="ml-3">{{ form.dance_profi.label }}</label><br>
+                                        {{ form.dance_NoProfi }}<label for="{{ form.dance_NoProfi.id_for_label }}" class="ml-3">{{ form.dance_NoProfi.label }}</label><br>
+                                        {{ form.dance_lesbi_show }}<label for="{{ form.dance_lesbi_show.id_for_label }}" class="ml-3">{{ form.dance_lesbi_show.label }}</label><br>
+                                        {{ form.dance_lisbi }}<label for="{{ form.massage_tiski.id_for_label }}" class="ml-3">{{ form.dance_lisbi.label }}</label><br>
+                                    </div>
+                                    <div class="header bg-info p-2 text-white">Садо-Мазо</div>
+                                    <div class="form-check mt-0 border mb-2">
+                                        {{ form.sado_bandaj }}<label for="{{ form.sado_bandaj.id_for_label }}" class="ml-3">{{ form.sado_bandaj.label }}</label><br>
+                                        {{ form.sado_gospoja }}<label for="{{ form.sado_gospoja.id_for_label }}" class="ml-3">{{ form.sado_gospoja.label }}</label><br>
+                                        {{ form.sado_rabyn }}<label for="{{ form.sado_rabyn.id_for_label }}" class="ml-3">{{ form.sado_rabyn.label }}</label><br>
+                                        {{ form.sado_dominant }}<label for="{{ form.sado_dominant.id_for_label }}" class="ml-3">{{ form.sado_dominant.label }}</label><br>
+                                        {{ form.sado_porka }}<label for="{{ form.sado_porka.id_for_label }}" class="ml-3">{{ form.sado_porka.label }}</label><br>
+                                        {{ form.sado_fetish }}<label for="{{ form.sado_fetish.id_for_label }}" class="ml-3">{{ form.sado_fetish.label }}</label><br>
+                                        {{ form.sado_trampling }}<label for="{{ form.sado_trampling.id_for_label }}" class="ml-3">{{ form.sado_trampling.label }}</label><br>
+                                    </div>
+                                    <div class="header bg-info p-2 text-white">Экстрим</div>
+                                    <div class="form-check mt-0 border mb-2">
+                                        {{ form.extrim_anilingus }}<label for="{{ form.extrim_anilingus.id_for_label }}" class="ml-3">{{ form.extrim_anilingus.label }}</label><br>
+                                        {{ form.extrim_dojd_out }}<label for="{{ form.extrim_dojd_out.id_for_label }}" class="ml-3">{{ form.extrim_dojd_out.label }}</label><br>
+                                        {{ form.extrim_dojd_in }}<label for="{{ form.extrim_dojd_in.id_for_label }}" class="ml-3">{{ form.extrim_dojd_in.label }}</label><br>
+                                        {{ form.extrim_strapon }}<label for="{{ form.extrim_strapon.id_for_label }}" class="ml-3">{{ form.extrim_strapon.label }}</label><br>
+                                        {{ form.extrim_fisting_anal }}<label for="{{ form.extrim_fisting_anal.id_for_label }}" class="ml-3">{{ form.extrim_fisting_anal.label }}</label><br>
+                                        {{ form.extrim_fisting_vagin }}<label for="{{ form.extrim_fisting_vagin.id_for_label }}" class="ml-3">{{ form.extrim_fisting_vagin.label }}</label><br>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                        <input type="submit" value="NEXT" class="btn btn-primary content m-2">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
