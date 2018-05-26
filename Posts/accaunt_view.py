@@ -17,7 +17,7 @@ def login(request):
         user = authenticate(username=username, password=password)
         auth_login(request, user)
         return redirect("Posts:profile")
-    return render(request, "accaunt_form.html", {"authForm": form, "title": title, 'btn' : btnTitle})
+    return render(request, "accaunt_forms.html", {"authForm": form, "title": title, 'btn' : btnTitle})
 
 
 def register_view(request):
@@ -39,7 +39,7 @@ def register_view(request):
         'btn' : btnTitle
 
     }
-    return render(request, "accaunt_form.html", context)
+    return render(request, "accaunt_forms.html", context)
 
 
 def logout_view(request):
