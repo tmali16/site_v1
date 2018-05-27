@@ -1,36 +1,36 @@
 {% block services %}
+
     <nav>
-        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <div class="accordion " id="nav-service-tab" role="tablist">
             {% if serv_instance.main_classic or serv_instance.main_blowJob_w_condom or serv_instance.main_cunni or serv_instance.main_group_sex or serv_instance.main_lesbi_lesbi %}
-                <a class="nav-item nav-link active" id="nav-main-tab" data-toggle="tab" href="#nav-main" role="tab"
-                   aria-controls="nav-home" aria-selected="true">Основные услуги</a>
+                <a class="btn btn-outline-info p-1" id="nav-main-tab" data-toggle="collapse" href="#nav-main" role="tab"
+                   aria-controls="nav-main" aria-expanded="true" >Основные услуги</a>
             {% endif %}
             {% if serv_instance.dop_end_mouth or serv_instance.dop_end_face or serv_instance.dop_glub_minet or serv_instance.dop_toys or serv_instance.dop_role_game or serv_instance.dop_couple_service or serv_instance.dop_video or serv_instance.dop_company %}
-                <a class="nav-item nav-link" id="nav-dop_service-tab" data-toggle="tab" href="#nav-dop_service" role="tab"
-                   aria-controls="nav-profile" aria-selected="false">Допол. услуги</a>
+                <a class="btn btn-outline-info p-1" id="nav-dop_service-tab" data-toggle="collapse" href="#nav-dop_service" role="tab"
+                   aria-controls="nav-dop_service" aria-expanded="false">Допол. услуги</a>
             {% endif %}
         {% if serv_instance.massage_relax or serv_instance.massage_classic or serv_instance.massage_profi or serv_instance.massage_tiski or serv_instance.massage_prostat or serv_instance.massage_erotic or serv_instance.massage_sakura %}
-                <a class="nav-item nav-link" id="nav-massag-tab" data-toggle="tab" href="#nav-massag" role="tab"
-                   aria-controls="nav-profile" aria-selected="false">Массаж</a>
+                <a class="btn btn-outline-info p-1" id="nav-massag-tab" data-toggle="collapse" href="#nav-massag" role="tab"
+                   aria-controls="nav-massag" aria-expanded="false">Массаж</a>
         {% endif %}
-        {% if serv_instance.dance_profi or serv_instance.dance_NoProfi or insserv_instanceserv_instanceance.dance_lesbi_show or serv_instance.dance_lisbi  %}
-                        <a class="nav-item nav-link" id="nav-dance-tab" data-toggle="tab" href="#nav-dance" role="tab"
-                   aria-controls="nav-profile" aria-selected="false">Стритиз</a>
+        {% if serv_instance.dance_profi or serv_instance.dance_NoProfi or serv_instance.dance_lesbi_show or serv_instance.dance_lisbi  %}
+                        <a class="btn btn-outline-info p-1" id="nav-dance-tab" data-toggle="collapse" href="#nav-dance" role="tab"
+                   aria-controls="nav-dance" aria-expanded="false">Стритиз</a>
         {% endif %}
         {% if serv_instance.sado_bandaj or serv_instance.sado_gospoja or serv_instance.sado_rabyn or serv_instance.sado_dominant or serv_instance.sado_porka or serv_instance.sado_fetish or serv_instance.sado_trampling %}
-         <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
-                   aria-controls="nav-profile" aria-selected="false">Садо-маза</a>
+         <a class="btn btn-outline-info p-1" id="nav-sado-tab" data-toggle="collapse" href="#nav-sado" role="tab"
+                   aria-controls="nav-sado" aria-expanded="false">Садо-маза</a>
         {% endif %}
         {% if serv_instance.extrim_anilingus or serv_instance.extrim_dojd_out or serv_instance.extrim_dojd_in or serv_instance.extrim_strapon or serv_instance.extrim_fisting_anal or serv_instance.extrim_fisting_vagin%}
-         <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
-                   aria-controls="nav-profile" aria-selected="false">Экстрим</a>
+         <a class="btn btn-outline-info p-1" id="nav-extrim-tab" data-toggle="collapse" href="#nav-extrim" role="tab"
+                   aria-controls="nav-extrim" aria-expanded="false">Экстрим</a>
         {% endif %}
         </div>
     </nav>
-
-    <div class="tab-content" id="nav-tabContent">
+    <div class="row mt-4" id="nav-tabContent">
         {% if serv_instance.main_classic or serv_instance.main_blowJob_w_condom or serv_instance.main_cunni or serv_instance.main_group_sex or serv_instance.main_lesbi_lesbi %}
-            <div class="tab-pane fade show active" id="nav-main" role="tabpanel" aria-labelledby="nav-main-tab">
+         <div class="collapse show" data-parent="nav-service-tab" id="nav-main"  role="tabpanel" aria-labelledby="nav-main-tab">
             <strong></strong>
             <ul class="service-item">
                 {% if serv_instance.main_classic %}
@@ -50,10 +50,11 @@
                     <li>Анальный секс<span class="text-danger"> + {{ serv_instance.anal_sex_price }}</span>
                     </li>{% endif %}
             </ul>
+         </div>
         {% endif %}
-        </div>
+
         {% if serv_instance.dop_end_mouth or serv_instance.dop_end_face or serv_instance.dop_glub_minet or serv_instance.dop_toys or serv_instance.dop_role_game or serv_instance.dop_couple_service or serv_instance.dop_video or serv_instance.dop_company %}
-            <div class="tab-pane fade" id="nav-dop_service" role="tabpanel" aria-labelledby="nav-dop_service-tab">
+            <div class="collapse " data-parent="nav-service-tab" id="nav-dop_service" role="tabpanel" aria-labelledby="nav-dop_service-tab">
                 <ul class="">
                     {% if serv_instance.dop_end_mouth %}
                         <li class="">Кончить в рот</li>{% endif %}
@@ -74,7 +75,8 @@
                 </ul>
             </div>
         {% endif %}
-        <div class="tab-pane fade" id="nav-massag" role="tabpanel" aria-labelledby="nav-massag-tab">
+    {% if serv_instance.massage_relax or serv_instance.massage_classic or serv_instance.massage_profi or serv_instance.massage_tiski or serv_instance.massage_prostat or serv_instance.massage_erotic or serv_instance.massage_sakura %}
+        <div class="collapse " data-parent="nav-service-tab" id="nav-massag" role="tabpanel" aria-labelledby="nav-massag-tab">
             <ul class="">
                 {% if serv_instance.massage_relax %}<li >Раслобляющий массаж</li>{% endif%}
                 {% if serv_instance.massage_classic %}<li >Классический массаж</li>{% endif%}
@@ -85,15 +87,19 @@
                 {% if serv_instance.massage_sakura %}<li>Ветка сакуры</li>{% endif%}
             </ul>
         </div>
-        <div class="card-body p-1">
-            <ul class="tab-pane fade" id="nav-dance" role="tabpanel" aria-labelledby="nav-dance-tab">
+    {% endif %}
+    {% if serv_instance.dance_profi or serv_instance.dance_NoProfi or serv_instance.dance_lesbi_show or serv_instance.dance_lisbi  %}
+        <div class="collapse " data-parent="nav-service-tab" id="nav-dance" role="tabpanel" aria-labelledby="nav-dance-tab">
+            <ul >
                 {% if serv_instance.dance_profi %}<li class="">Стритиз профф.</li>{% endif%}
                 {% if serv_instance.dance_NoProfi %}<li class="">Стриптиз не профи</li>{% endif%}
                 {% if serv_instance.dance_lesbi_show%}<li class="">Откровенное лесби-шоу</li>{% endif%}
                 {% if serv_instance.dance_lisbi %}<li class="">Легкое лесби шоу</li>{% endif%}
             </ul>
         </div>
-       <div  class="tab-pane fade" id="nav-sado" role="tabpanel" aria-labelledby="nav-sado-tab">
+    {% endif %}
+    {% if serv_instance.massage_relax or serv_instance.massage_classic or serv_instance.massage_profi or serv_instance.massage_tiski or serv_instance.massage_prostat or serv_instance.massage_erotic or serv_instance.massage_sakura %}
+       <div  class="collapse " data-parent="nav-service-tab" id="nav-sado" role="tabpanel" aria-labelledby="nav-sado-tab">
             <ul class="">
                 {% if serv_instance.sado_bandaj %}<li class="">Бандаж</li>{% endif%}
                 {% if serv_instance.sado_gospoja %}<li class="">Госпожа</li>{% endif%}
@@ -104,7 +110,9 @@
                 {% if serv_instance.sado_trampling %}<li class="">Трамплинг</li>{% endif%}
             </ul>
         </div>
-        <div class="tab-pane fade" id="nav-extrim" role="tabpanel" aria-labelledby="nav-extrim-tab">
+    {% endif %}
+    {% if serv_instance.extrim_anilingus or serv_instance.extrim_dojd_out or serv_instance.extrim_dojd_in or serv_instance.extrim_strapon or serv_instance.extrim_fisting_anal or serv_instance.extrim_fisting_vagin%}
+        <div class="collapse " data-parent="nav-service-tab" id="nav-extrim" role="tabpanel" aria-labelledby="nav-extrim-tab">
             <ul class="">
                 {% if serv_instance.extrim_anilingus %}<li class="">Анилингус</li>{% endif%}
                 {% if serv_instance.extrim_dojd_out %}<li class="">Золой дождь выдача</li>{% endif%}
@@ -114,77 +122,12 @@
                 {% if serv_instance.extrim_fisting_vagin %}<li class="">Фистинг вагинальный</li>{% endif%}
             </ul>
         </div>
-
+    {% endif %}
     </div>
 
 
 
-{#            {% if serv_instance.massage_relax or serv_instance.massage_classic or serv_instance.massage_profi or serv_instance.massage_tiski or serv_instance.massage_prostat or serv_instance.massage_erotic or serv_instance.massage_sakura %}#}
-{#                <div class="col-sm-4 small mb-2">#}
-{#                    <div class="card">#}
-{#                        <div class="card-header bg-secondary text-white p-2">Массаж</div>#}
-{#                        <div class="card-body p-0">#}
-{#                            <ul class="list-group list-group-flush">#}
-{#                                {% if serv_instance.massage_relax %}<li class="">Раслобляющий массаж</li>{% endif%}#}
-{#                                {% if serv_instance.massage_classic %}<li class="">Классический массаж</li>{% endif%}#}
-{#                                {% if serv_instance.massage_profi %}<li class="">Проффесиональный массаж</li>{% endif%}#}
-{#                                {% if serv_instance.massage_tiski%}<li class="">Тайский массаж</li>{% endif%}#}
-{#                                {% if serv_instance.massage_prostat %}<li class="">Массаж простаты</li>{% endif%}#}
-{#                                {% if serv_instance.massage_erotic %}<li class="">Эротический массаж</li>{% endif%}#}
-{#                                {% if serv_instance.massage_sakura %}<li class="">Ветка сакуры</li>{% endif%}#}
-{#                            </ul>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            {% endif %}#}
-{#            {% if serv_instance.dance_profi or serv_instance.dance_NoProfi or insserv_instanceserv_instanceance.dance_lesbi_show or serv_instance.dance_lisbi  %}#}
-{#                <div class="col-sm-4 small mb-2">#}
-{#                    <div class="card">#}
-{#                        <div class="card-header bg-secondary text-white p-2">Стритиз</div>#}
-{#                        <div class="card-body p-0">#}
-{#                            <ul class="list-group list-group-flush">#}
-{#                                {% if serv_instance.dance_profi %}<li class="">Стритиз профф.</li>{% endif%}#}
-{#                                {% if serv_instance.dance_NoProfi %}<li class="">Стриптиз не профи</li>{% endif%}#}
-{#                                {% if serv_instance.dance_lesbi_show%}<li class="">Откровенное лесби-шоу</li>{% endif%}#}
-{#                                {% if serv_instance.dance_lisbi %}<li class="">Легкое лесби шоу</li>{% endif%}#}
-{#                            </ul>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            {% endif %}#}
-{#            {% if serv_instance.sado_bandaj or serv_instance.sado_gospoja or serv_instance.sado_rabyn or serv_instance.sado_dominant or serv_instance.sado_porka or serv_instance.sado_fetish or serv_instance.sado_trampling %}#}
-{#                <div class="col-sm-4 small mb-2">#}
-{#                    <div class="card">#}
-{#                        <div class="card-header bg-secondary text-white p-2">Садо-маза</div>#}
-{#                        <div class="card-body p-0">#}
-{#                            <ul class="list-group list-group-flush">#}
-{#                                {% if serv_instance.sado_bandaj %}<li class="">Бандаж</li>{% endif%}#}
-{#                                {% if serv_instance.sado_gospoja %}<li class="">Госпожа</li>{% endif%}#}
-{#                                {% if serv_instance.sado_rabyn %}<li class="">Рабыня</li>{% endif%}#}
-{#                                {% if serv_instance.sado_dominant%}<li class="">Лекая доминация</li>{% endif%}#}
-{#                                {% if serv_instance.sado_porka %}<li class="">Порка</li>{% endif%}#}
-{#                                {% if serv_instance.sado_fetish %}<li class="">Фетиш</li>{% endif%}#}
-{#                                {% if serv_instance.sado_trampling %}<li class="">Трамплинг</li>{% endif%}#}
-{#                            </ul>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            {% endif %}#}
-{#            {% if serv_instance.extrim_anilingus or serv_instance.extrim_dojd_out or serv_instance.extrim_dojd_in or serv_instance.extrim_strapon or serv_instance.extrim_fisting_anal or serv_instance.extrim_fisting_vagin%}#}
-{#                <div class="col-sm-4 small mb-2">#}
-{#                    <div class="card">#}
-{#                        <div class="card-header bg-secondary text-white p-2">Экстрим</div>#}
-{#                        <div class="card-body p-0">#}
-{#                            <ul class="list-group list-group-flush">#}
-{#                                {% if serv_instance.extrim_anilingus %}<li class="">Анилингус</li>{% endif%}#}
-{#                                {% if serv_instance.extrim_dojd_out %}<li class="">Золой дождь выдача</li>{% endif%}#}
-{#                                {% if serv_instance.extrim_dojd_in %}<li class="">Золотой дождь прием</li>{% endif%}#}
-{#                                {% if serv_instance.extrim_strapon%}<li class="">Страпон</li>{% endif%}#}
-{#                                {% if serv_instance.extrim_fisting_anal %}<li class="">Фистинг анальный</li>{% endif%}#}
-{#                                {% if serv_instance.extrim_fisting_vagin %}<li class="">Фистинг вагинальный</li>{% endif%}#}
-{#                            </ul>#}
-{#                        </div>#}
-{#                    </div>#}
-{#            {% endif %}#}
+{% endblock %}
+{% block js %}
 
 {% endblock %}

@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="{% static 'libs/bootstrap4/css/bootstrap-reboot.min.css' %}">
         <link rel="stylesheet" href="{% static 'libs/bootstrap4/css/bootstrap.min.css' %}">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:300, 400" rel="stylesheet">
     {% endblock link %}
     <title>{{ title }}</title>
 </head>
@@ -22,9 +23,6 @@
 {% block nav %}
     {% include 'nav-bar.html' %}
 {% endblock %}
-{% block breadcrumbs %}
-    <br>
-{% endblock breadcrumbs %}
 {% block body %}
 
 {% endblock %}
@@ -46,23 +44,8 @@ $(function() {
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 })
-
-$('.log_in_btn').click(function () {
-    alert('yes');
-{#    $.ajax({#}
-{#        type: "GET",#}
-{#        url: "/", //Change#}
-{#        data: {#}
-{#            'username': $('#username').val()#}
-{#        },#}
-{#        dataType: 'text',#}
-{#        cache: false,#}
-{#        success: function () {#}
-{#            alert('ok')#}
-{#        }#}
-{#    })#}
-
-});
+{% block js %}
+{% endblock %}
 </script>
 </body>
 </html>

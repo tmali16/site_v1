@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block body %}
-<div class="dialog">
+<div class="dialog mt-4 mb-4">
     <div class="main-view modal-content p-5">
         <div class="row">
             <div class="col-xs-12 col-sm-5">
@@ -119,4 +119,63 @@
         </div>
     </div>
 </div>
+
+    <div class="main-view modal-content">
+    <div class="row justify-content-center">
+        <div class="col-md-11 col-xs-11 col-lg-11 col-sm-11 ">
+            <div class="comment ">
+                <div class="comment-header">
+                    <label class="h3 justify-content-between">Отзывы</label><span
+                        class="badge badge-primary badge-pill">{{ comment.count }}</span>
+                </div>
+                <hr>
+                <form method="POST" action="">{% csrf_token %}
+                    <div class="input-group">
+                        {{ comment_form }}
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-primary" type="submit"><i class="material-icons mt-1">send</i></button>
+                        </div>
+                    </div>
+                </form>
+                <hr>
+                {% for comment in comments %}
+                    <blockquote class="mt-5 blockquote brd pl-3">
+                        <label>{{ comment.content }}</label>
+                        <footer class="blockquote-footer mb-3">{{ comment.user }} | {{ comment.timestamp | timesince }}
+                            назад |
+                            {% if comment.children.count > 0 %}
+                                <i class="material-icons pt-2" style="font-size: 14px">mode_comment</i>
+                                {{ comment.children.count }}
+                                |{% endif %}<a href="#commentReplay{{ comment.id }}" class="link replay-comment-btn" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="commentReplay{{ comment.id }}"><i class="material-icons mt-1 "  style="font-size: 16px">reply</i> Ответить</a>
+                        </footer>
+                        <div class="comment-reply collapse ml-3 brdid" id="commentReplay{{ comment.id }}" style="">
+                            <div class="replaycomment pl-3">
+                            {% for chl_comm in comment.children %}
+                                <blockquote class="reblockquote">
+                                    <label class="">{{ chl_comm.content }}</label>
+                                    <footer class="blockquote-footer mb-3">{{ chl_comm.user }}
+                                        | {{ chl_comm.timestamp | timesince }} назад
+                                    </footer>
+                                </blockquote>
+                            {% endfor %}
+                            <hr>
+                            <form method="POST" action="">{% csrf_token %}
+                                <input type="hidden" name="parent_id" value="{{ comment.id }}">
+                                <div class="input-group">
+                                    {{ comment_form }}
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" type="submit"><i class="material-icons mt-1">send</i></button>
+                                    </div>
+                                </div>
+                            </form>
+                            </div>
+                        </div>
+                    </blockquote>
+                    <hr>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    </div>
+
 {% endblock %}

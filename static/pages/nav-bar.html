@@ -1,6 +1,6 @@
 {% block nav %}
     <navbar>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg shadow-sm bg-white " data-spy="affix" data-offset-top="197">
             <div class="container">
                 <a class="navbar-brand" href="{% url 'Posts:list' %}">Navbar</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
@@ -14,26 +14,17 @@
                         <a class="nav-item nav-link" href="#">Pricing</a>
                     </div>
                 </div>
-                <div class="nav navbar-collapse" id="navbarNavAltMarkup">
                     <div class="nav justify-content-end">
                     {% if  request.user.is_authenticated %}
-                        {#                            <li class="nav-item ">#}
                         <a class="nav-link" href="{% url 'Posts:profile' %}" >Мой профиль</a>
-                        {#                            </li>#}
-                        {#                            <li class="nav-item ">#}
                         <a class="nav-link" href="{% url 'Posts:logout'%}" >Выйти</a>
-                        {#                            </li>#}
                     {% else %}
-                        {#                            <li class="nav-item ">#}
                         <a class="nav-link" href="{% url 'Posts:login' %}">Войти</a>
-                        {#                            </li>#}
-                        {#                            <li class="nav-item ">#}
                         <a class="nav-link" href="{% url 'Posts:register' %}">Регистрация</a>
-                        {#                            </li>#}
                     {% endif %}
                     </div>
-                </div>
             </div>
+
         </nav>
     </navbar>
 {% endblock nav %}

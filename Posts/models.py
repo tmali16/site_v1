@@ -4,7 +4,6 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 
-
 # Create your models here.
 from django.urls import reverse
 
@@ -43,15 +42,22 @@ class haire(models.Model):
         return self.value
 
 
+class post_status(models.Model):
+    value = models.CharField(max_length=10)
+
+    def __str__(self):
+        return self.value
+
+
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100, blank=True)
     phone = models.CharField(max_length=12, null=False)
     age = models.CharField(max_length=10)
-    boob = models.FloatField()
-    height = models.IntegerField()
-    weight = models.IntegerField()
-    note = models.TextField(max_length=500, null=True, blank=True)
+    boob = models.FloatField(blank=True, null=True)
+    height = models.IntegerField(blank=True, null=True)
+    weight = models.IntegerField(blank=True, null=True)
+    note = models.TextField(max_length=1000, null=True, blank=True)
     hair = models.ForeignKey(haire, on_delete=models.CASCADE)
     eye = models.ForeignKey(eyes, on_delete=models.CASCADE)
     types = models.ForeignKey(types, on_delete=models.CASCADE)
@@ -65,8 +71,9 @@ class Post(models.Model):
 
     active_counter = models.IntegerField(blank=True, null=True)
     user_active = models.BooleanField(default=True)
-    end_date = models.DateTimeField(auto_now_add=False, null=True)
+    end_date = models.DateTimeField(auto_now_add=False, null=True, blank=True)
     admin_active = models.BooleanField(default=False)
+    status = models.ForeignKey(post_status, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -79,8 +86,6 @@ class Post(models.Model):
         instance = self
         qs = Comment.objects.filter_by_instance(instance)
         return qs
-
-
 
     @property
     def get_content_type(self):

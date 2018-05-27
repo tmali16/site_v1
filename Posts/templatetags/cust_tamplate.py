@@ -66,6 +66,12 @@ def comment_count(id):
 
 
 @register.filter
+def filter_comment(id):
+    instance = get_object_or_404(Post, id=id)
+    res = instance.comments
+    return res
+
+@register.filter
 def count_day(td):
     res = td - timezone.now()
     e_date = (timezone.now() + res) - timezone.now()

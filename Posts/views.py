@@ -19,10 +19,11 @@ from Posts.models import Post
 def post_list(request):
     title = "Главная"
     post = Post.objects.all()
-    paginator = Paginator(post, 1) # Show 25 contacts per page
+    comment = Post.comments
+    paginator = Paginator(post, 1)  # Show 25 contacts per page
     page = request.GET.get('page')
     try:
-        posts =  paginator.get_page(page)
+        posts = paginator.get_page(page)
     except PageNotAnInteger:
         posts = paginator.get_page(1)
     except EmptyPage:
@@ -33,7 +34,8 @@ def post_list(request):
     context = {
         "title": title,
         'post': post,
-        'posts_page': posts
+        'posts_page': posts,
+        "comments": comment,
     }
     return render(request, "post_list.html", context)
 
@@ -42,35 +44,20 @@ def post_create(request):
     title = 'Новая анкета'
     form = pForm(request.POST or None, request.FILES or None)
     sform = ServiceForm(request.POST or None)
-    post_id = None
     if form.is_valid() and sform.is_valid():
-        mInstance = form.save(commit=False)
-        mInstance.user = request.user
-        mInstance.save()
-        print(post_id)
-        ins = sform.save(commit=False)
-        ins.post = mInstance
-        ins.save()
-        redirect('Posts:create2')
+        post = form.save(commit=False)
+        post.user = request.user
+        post.save()
+        service = sform.save(commit=False)
+        service.post = post
+        service.save()
+        redirect('Posts:profile')
     context = {
         'title': title,
-        'form':form,
-        'sform':sform
+        'form': form,
+        'sform': sform
     }
     return render(request, "post_form.html", context)
-
-
-def post_create2(request):
-    title = 'Новая анкета'
-    form = ServiceForm(request.POST or None)
-    if form.is_valid():
-        ins = form.save(commit=False)
-        ins.save()
-    context = {
-        'title': title,
-        'form': form
-    }
-    return render(request, "service_form.html", context)
 
 
 def post_update(request, id=None):
@@ -89,7 +76,7 @@ def post_update(request, id=None):
     context = {
         'title': title,
         'form': form,
-        'sform':sform,
+        'sform': sform,
         'instance': instance
     }
     return render(request, "post_form.html", context)
@@ -98,7 +85,6 @@ def post_update(request, id=None):
 def post_detail(request, id=None):
     instance = get_object_or_404(Post, id=id)
     serviceInstance = get_object_or_404(Service, post_id=id)
-
     if not (instance.user_active and instance.admin_active):
         print("Not activate")
         raise Http404
@@ -139,7 +125,7 @@ def post_detail(request, id=None):
     comments = instance.comments
     context = {
         "instance": instance,
-        'serv_instance':serviceInstance,
+        'serv_instance': serviceInstance,
         "comments": comments,
         "comment_form": comment_form,
     }
@@ -164,43 +150,39 @@ def filter_excpencive(request):
     instance = Service.objects.all().select_related('post').order_by('appart_1')
     post = Post.objects.all()
     # title = "Войти"
-    count_to_end_active()
     context = {
         "title": title,
         'post': instance,
     }
     return render(request, "post_list.html", context)
 
+
 def yunger(request):
     title = 'Главная'
-    instance = Service.objects.all().select_related('post').order_by('appart_1')
     post = Post.objects.all().order_by('age')
     # title = "Войти"
-    count_to_end_active()
     context = {
         "title": title,
         'post': post,
     }
     return render(request, "post_list.html", context)
+
 
 def new(request):
     title = 'Главная'
-    instance = Service.objects.all().select_related('post').order_by('appart_1')
     post = Post.objects.all().order_by('timestamp')
     # title = "Войти"
-    count_to_end_active()
     context = {
         "title": title,
         'post': post,
     }
     return render(request, "post_list.html", context)
 
+
 def big_boobs(request):
     title = 'Главная'
-    instance = Service.objects.all().select_related('post').order_by('appart_1')
-    post = Post.objects.all().filter(boob__gt=2).order_by('boob')
+    post = Post.objects.all().filter(boob__gt=3).order_by('boob')
     # title = "Войти"
-    count_to_end_active()
     context = {
         "title": title,
         'post': post,

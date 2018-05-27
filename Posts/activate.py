@@ -7,19 +7,15 @@ import threading
 
 
 def checks():
-    # def autoDeActive(self):
-    if Post.objects.values_list('id', flat=True).filter(user_active=True).filter(admin_active=True):
-
-        for i in Post.objects.values_list('id', flat=True).filter(user_active=True).filter(admin_active=True).order_by('id'):
-            toDay = timezone.now()
-            a_active = get_object_or_404(Post, id=i).admin_active
-            u_active = get_object_or_404(Post, id=i).user_active
-            # e_date = get_object_or_404(Post, id=i).end_date
-            if a_active and u_active:
-                Post.objects.filter(id=i).update(active_counter=None)
-            else:
-                if not u_active or a_active:
-                    pass
+    for i in Post.objects.values_list('id', flat=True).filter(user_active=True).filter(admin_active=True).order_by('id'):
+        toDay = timezone.now()
+        a_active = get_object_or_404(Post, id=i).admin_active
+        u_active = get_object_or_404(Post, id=i).user_active
+        # e_date = get_object_or_404(Post, id=i).end_date
+        if a_active and u_active:
+            Post.objects.filter(id=i).update(active_counter=None)
+        else:
+            pass
 
 
 def count_to_end_active():
