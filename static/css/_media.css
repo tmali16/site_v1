@@ -56,6 +56,9 @@
 	.left-bar{
 		display: none;
 	}
+		.services{
+		font-size: 12px;
+	}
 }
 
 /* Extra Small Devices, Phones */

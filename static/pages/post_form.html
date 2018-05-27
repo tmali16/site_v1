@@ -10,7 +10,7 @@
                     <form action="" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="row justify-content-center">
-                            <div class="col-md-6 col-sm-8 col-lg-10 col-xs-6">
+                            <div class="col-md-8 col-sm-8 col-lg-10 col-xs-6">
                                 <div class="form-group form-group-sm p-2">
                                     <label for="{{ form.name.id_for_label }}"
                                            class="inline-group mr-3">{{ form.name.label }} </label>{{ form.name }}
@@ -30,35 +30,34 @@
                                     <label for="{{ form.note.id_for_label }}" class="inline mr-3">{{ form.note.label }} </label>{{ form.note }}
                                     <div class="panel">
                                         <div class="panel-header bg-info mt-3 p-2"><label>Foto</label></div>
-                                        <div class="panel-body border p-2">
-                                        <table>
+                                        <div class="panel-body border p-2 services">
+                                        <table class="">
                                             <tbody>
                                             <tr>
                                                 <td>{{ form.image_1 }}</td>
-                                                <td><label for="{{ form.image_1.id_for_label }}" class="mr-3">{{ form.image_1.label|truncatechars:10 }}</label></td>
+                                                <td><label for="{{ form.image_1.id_for_label }}" class="mr-3 hidden-sm-down">{{ form.image_1.label|truncatechars:10 }}</label></td>
 {#                                                <td>{% if instance.image_1 %}<a href="{{ instance.image_1.url}}">{{instance.image_1.url|truncatechars:9 }}</a></td>{% endif %}#}
                                             </tr>
                                             <tr>
                                                 <td>{{ form.image_2 }}</td>
-                                                <td><label for="{{ form.image_2.id_for_label }}" class="mr-3">{{ form.image_2.label|truncatechars:9 }}</label></td>
+                                                <td><label for="{{ form.image_2.id_for_label }}" class="mr-3 hidden-sm-down">{{ form.image_2.label|truncatechars:9 }}</label></td>
 {#                                                <td>{% if instance.image_2 %}<a href="{{ instance.image_2.url }}">instance.image_2.url|truncate</a> {% endif %}</td>#}
                                             </tr>
                                             <tr>
                                                 <td>{{ form.image_3 }}</td>
-                                                <td><label for="{{ form.image_3.id_for_label }}" class="mr-3">{{ form.image_3.label }}</label></td>
+                                                <td><label for="{{ form.image_3.id_for_label }}" class="mr-3 hidden-sm-down">{{ form.image_3.label }}</label></td>
 {#                                                <td>{% if instance.image_3 %}<a href="{{ instance.image_3.url }}">instance.image_3.url|truncate</a>{% endif %}</td>#}
                                             </tr>
                                             <tr>
                                                 <td>{{ form.image_4 }}</td>
-                                                <td><label for="{{ form.image_4.id_for_label }}" class="mr-3">{{ form.image_4.label }}</label></td>
+                                                <td><label for="{{ form.image_4.id_for_label }}" class="mr-3 hidden-sm-down">{{ form.image_4.label }}</label></td>
 {#                                                <td>{% if instance.image_4 %}<a href="{{ instance.image_4.url }}">instance.image_4.url|truncate</a> {% endif %}</td>#}
                                             </tr>
                                             <tr>
                                                 <td>{{ form.image_5 }}</td>
-                                                <td><label for="{{ form.image_5.id_for_label }}" class="mr-3">{{ form.image_5.label }}</label></td>
+                                                <td><label for="{{ form.image_5.id_for_label }}" class="mr- hidden-sm-down">{{ form.image_5.label }}</label></td>
                                                 <td>{% if instance.image_5 %}<a href="{{ instance.image_5.url }}">instance.image_5.url|truncate</a> {% endif %}</td>
                                             </tr>
-
                                             </tbody>
                                         </table>
                                         </div>
@@ -66,10 +65,10 @@
                                 </div>
 
                                 <div class="header  bg-info p-2 text-white">Аппартамент</div>
-                                <div class="appart border p-2 mb-2">
+                                <div class="appart border p-1 mb-2">
                                     <table class="col">
                                         <tbody class="table table-borderless">
-                                        <tr>
+                                        <tr class="col-sm">
                                             <td class=""><label for="{{ sform.appart_1.id_for_label }}"class="mr-3">1-Час</label></td>
                                             <td>{{ sform.appart_1 }}</td>
                                         </tr>
@@ -83,14 +82,11 @@
                                         </tr>
                                         </tbody>
                                     </table>
-
-
-
                                 </div>
                                 <div class="header border bg-info border p-2 text-white">Выезд</div>
                                 <div class="appart border">
-                                    <div class="appart  p-3">
-                                        <table class="col">
+                                    <div class="appart  p-1">
+                                        <table class="">
                                             <tbody class="table table-borderless">
                                             <tr>
                                                 <td><label for="{{ sform.outside_1.id_for_label }}" class="mb-0">1-Час</label></td>
@@ -113,25 +109,24 @@
                                 <div class="header bg-info p-2 text-white">Основные услуги</div>
                                 <div class="form-check border pt-2 mb-3">{{ sform.content_type }}{{ service_form.object_id }}
                                     {{ sform.main_classic }}<label for="{{ sform.main_classic.id_for_label }}" class="ml-3">{{ sform.main_classic.label }}</label><br>
-                                    {{ sform.main_blowJob_w_condom }}<label for="{{ form.main_blowJob_w_condom.id_for_label }}" class="ml-3">{{ sform.main_blowJob_w_condom.label }}</label><br>
+                                    {{ sform.main_blowJob_w_condom }}<label for="{{ sform.main_blowJob_w_condom.id_for_label }}" class="ml-3">{{ sform.main_blowJob_w_condom.label }}</label><br>
                                     {{ sform.main_cunni }}<label for="{{ sform.main_cunni.id_for_label }}" class="ml-3">{{ sform.main_cunni.label }}</label><br>
                                     {{ sform.main_group_sex }}<label for="{{ sform.main_group_sex.id_for_label }}" class="ml-3">{{ sform.main_group_sex.label }}</label><br>
                                     {{ sform.main_lesbi_lesbi }}<label for="{{ sform.main_lesbi_lesbi.id_for_label }}" class="ml-3">{{ sform.main_lesbi_lesbi.label }}</label><br>
                                     <div class="main-pr pb-2">
                                         <table class="col">
-                                            <tbody>
+                                            <tbody class="services">
                                             <tr>
                                                 <td>{{ sform.mbr }}</td>
-                                                <td><label for="{{ sform.mbr.id_for_label }}" class="">{{ sform.mbr.label }}</label></td>
+                                                <td><label data-toggle="tooltip" data-placement="top" title="{{ sform.mbr.label }}"  for="{{ sform.mbr.id_for_label }}" class="">{{ sform.mbr.label }}</label></td>
 {#                                                <td><label for="{{ sform.mbr.id_for_label }}" class=""></label></td>#}
                                                 <td>{{ sform.mbr_price }}</td>
                                                 <td><p></p></td>
                                             </tr>
                                             <tr>
                                                 <td>{{ sform.anal_sex }}</td>
-                                                <td><label for="{{ sform.anal_sex.id_for_label }}" class="">{{ sform.anal_sex.label }}</label></td>
+                                                <td><label data-toggle="tooltip" data-placement="top" title="{{ sform.anal_sex.label }}" for="{{ sform.anal_sex.id_for_label }}" class="">{{ sform.anal_sex.label }}</label></td>
                                                 <td>{{ sform.anal_sex_price }}</td>
-                                                <td><label for="" class="pr-1 pl-1"></label></td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -163,7 +158,7 @@
                                     {{ sform.dance_profi }}<label for="{{        sform.dance_profi.id_for_label }}" class="ml-3">{{       sform.dance_profi.label }}</label><br>
                                     {{ sform.dance_NoProfi }}<label for="{{      sform.dance_NoProfi.id_for_label }}" class="ml-3">{{     sform.dance_NoProfi.label }}</label><br>
                                     {{ sform.dance_lesbi_show }}<label for="{{   sform.dance_lesbi_show.id_for_label }}" class="ml-3">{{  sform.dance_lesbi_show.label }}</label><br>
-                                    {{ sform.dance_lisbi }}<label for="{{        sform.massage_tiski.id_for_label }}" class="ml-3">{{     sform.dance_lisbi.label }}</label><br>
+                                    {{ sform.dance_lisbi }}<label for="{{        sform.dance_lisbi.id_for_label }}" class="ml-3">{{     sform.dance_lisbi.label }}</label><br>
                                 </div>
                                 <div class="header bg-info p-2 text-white">Садо-Мазо</div>
                                 <div class="form-check mt-0 border mb-2">

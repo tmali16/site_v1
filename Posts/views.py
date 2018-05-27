@@ -21,7 +21,6 @@ def post_list(request):
     post = Post.objects.all()
     paginator = Paginator(post, 1) # Show 25 contacts per page
     page = request.GET.get('page')
-
     try:
         posts =  paginator.get_page(page)
     except PageNotAnInteger:
@@ -29,7 +28,8 @@ def post_list(request):
     except EmptyPage:
         posts = paginator.page(paginator.num_pages)
     # title = "Войти"
-    count_to_end_active()
+    # count_to_end_active()
+    checks()
     context = {
         "title": title,
         'post': post,
@@ -143,7 +143,7 @@ def post_detail(request, id=None):
         "comments": comments,
         "comment_form": comment_form,
     }
-    return render(request, "detail.html", context)
+    return render(request, "test.html", context)
 
 
 # ------------------------------------------------------------------------------------

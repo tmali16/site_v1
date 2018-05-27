@@ -10,22 +10,16 @@ def checks():
     # def autoDeActive(self):
     if Post.objects.values_list('id', flat=True).filter(user_active=True).filter(admin_active=True):
 
-        for id in Post.objects.values_list('id', flat=True).filter(user_active=True).filter(admin_active=True).order_by(
-                'id'):
-            a_active = get_object_or_404(Post, id=id).admin_active
-            u_active = get_object_or_404(Post, id=id).user_active
-            e_date = get_object_or_404(Post, id=id).end_date
-            # s_date = get_object_or_404(Post, id=id).start_date
+        for i in Post.objects.values_list('id', flat=True).filter(user_active=True).filter(admin_active=True).order_by('id'):
+            toDay = timezone.now()
+            a_active = get_object_or_404(Post, id=i).admin_active
+            u_active = get_object_or_404(Post, id=i).user_active
+            # e_date = get_object_or_404(Post, id=i).end_date
             if a_active and u_active:
-                if timezone.now() > e_date:
-                    Post.objects.filter(id=id).update(admin_active=False)
-                    print('deActivated')
-                else:
-                    Post.objects.filter(id=id).update(start_date=timezone.now())
-                    print('Anketa #' + str(id) + ' works')
+                Post.objects.filter(id=i).update(active_counter=None)
             else:
-                if not u_active and a_active:
-                    res_date = timezone.now() - e_date
+                if not u_active or a_active:
+                    pass
 
 
 def count_to_end_active():

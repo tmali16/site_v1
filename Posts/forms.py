@@ -114,10 +114,10 @@ class ServiceForm(forms.ModelForm):
     extrim_fisting_anal = forms.CharField(required=False,label='Фистинг анальный', widget=forms.CheckboxInput())
     extrim_fisting_vagin = forms.CharField(required=False,label='Фистинг вагинальный', widget=forms.CheckboxInput())
 
-    mbr = forms.CharField(required=False,label='        ', widget=forms.CheckboxInput())
-    mbr_price = forms.CharField(required=False,label='', widget=forms.TextInput(attrs={'class':'form-control form-control-sm col-5', 'width':'10', 'placeholder':'Сумма за услугу'}))
+    mbr = forms.CharField(required=False,label='Миньет без призерватива', widget=forms.CheckboxInput())
+    mbr_price = forms.CharField(required=False,label='', widget=forms.TextInput(attrs={'class':'form-control form-control-sm', 'placeholder':'Сумма за услугу'}))
     anal_sex = forms.CharField(required=False,label='Анальный секс', widget=forms.CheckboxInput(attrs={'onclick':''}))
-    anal_sex_price = forms.CharField(required=False,label='', widget=forms.TextInput(attrs={'class':'form-control form-control-sm col-12 ml-5 pr-3', 'width':'10', 'placeholder':'Сумма за услугу'}))
+    anal_sex_price = forms.CharField(required=False,label='', widget=forms.TextInput(attrs={'class':'form-control form-control-sm', 'placeholder':'Сумма за услугу'}))
 
     class Meta:
         model = Post

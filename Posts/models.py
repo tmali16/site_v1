@@ -63,7 +63,7 @@ class Post(models.Model):
     update = models.DateTimeField(auto_now=True, auto_now_add=False)
     timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
 
-    active_counter = models.DateTimeField(auto_now_add=False, null=True)
+    active_counter = models.IntegerField(blank=True, null=True)
     user_active = models.BooleanField(default=True)
     end_date = models.DateTimeField(auto_now_add=False, null=True)
     admin_active = models.BooleanField(default=False)
