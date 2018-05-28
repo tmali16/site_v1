@@ -41,6 +41,8 @@ def post_list(request):
 
 
 def post_create(request):
+    if not request.user.is_authenticated:
+        raise Http404
     title = 'Новая анкета'
     form = pForm(request.POST or None, request.FILES or None)
     sform = ServiceForm(request.POST or None)
@@ -51,7 +53,7 @@ def post_create(request):
         service = sform.save(commit=False)
         service.post = post
         service.save()
-        redirect('Posts:profile')
+        redirect('/')
     context = {
         'title': title,
         'form': form,
@@ -61,8 +63,12 @@ def post_create(request):
 
 
 def post_update(request, id=None):
+    if not request.user.is_authenticated:
+        raise Http404
     title = 'Изменения'
     instance = get_object_or_404(Post, id=id)
+    if request.user.id != instance.user_id:
+        raise Http404
     serv_instance = get_object_or_404(Service, post_id=id)
     form = pForm(request.POST or None, request.FILES or None, instance=instance)
     sform = ServiceForm(request.POST or None, instance=serv_instance)

@@ -41,7 +41,7 @@
 {#                            {% for f in service %}#}
                             {% if t.user_active and t.admin_active %}
                                 <a href="{% url 'Posts:detail' id=t.id %}">
-                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 mb-4 " style="">
+                            <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4 mb-4 " style="">
                                 <div class="article bg-light p-1 hover-shadow hover-border ">
                                     <div class="top">
                                         <div class="header p-1 border-bottom-1"><label href="">{{ t.name }}</label><div class="float-right">{{ t.age }} <span class="text-muted">лет</span></div>
@@ -112,7 +112,7 @@
                                             </table>
                                         </div>
                                         <div class="footer p-1">
-                                            <span class=" h5"><a class="" href="tel:">{{ t.phone }}</a></span>
+                                            <span class=" h5"><a class="" href="tel:{{ t.phone }}">{{ t.phone }}</a></span>
                                             <span class="float-right"><i class="material-icons outline-mode_comment mt-2" style="font-size: 12px; " ng-reflect-style="outline">mode_comment </i><span style="font-size: 16px; color: #007bff;"> {{ t.id|comment_count}}</span></span>
                                         </div>
                                     </div>

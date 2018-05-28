@@ -36,16 +36,16 @@
 {% endblock jslink %}
 <script type="text/javascript">
 $(function() {
-    $('#myCarousel').carousel({interval: 20});
+    $('#myCarousel').carousel({interval: 50});
     $('#myModal').on('shown.bs.modal', function () {
         $('#myInput').trigger('focus')
     });
 });
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
 {% block js %}
 {% endblock %}
 </script>
+<footer class="bottom-footer">
+    <div class="alert-warning footer-color"><p>footer</p></div>
+</footer>
 </body>
 </html>

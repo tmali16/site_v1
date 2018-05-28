@@ -1,6 +1,6 @@
 body{
     font-family: 'Nunito', sans-serif !important;
-    background-color: #d9d9d9 !important;
+    background-color: #4e4e4e !important;
 }
 .post_panel{
     /*height: 150px ;*/
@@ -58,6 +58,7 @@ a{
 }
 .quick-image .carousel-inner{
     max-height: 500px !important;
+    min-height: 400px !important;
     text-align: center;
 }
 .quick-image .carousel-inner img{
@@ -169,4 +170,20 @@ a{
 }
 .black-border{
     border: 1px solid #8a8a8a;
+}
+.amount{
+    margin-top: -40px;
+}
+.bottom-footer{
+    margin-top: 50px;
+    width: 100%;
+    height: 100px;
+}
+.footer-color{
+    height: 100%;
+    width: 100%;
+}
+.por-dse div ul{
+    padding-left: 15px;
+    margin-bottom: 0px;
 }

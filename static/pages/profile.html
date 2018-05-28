@@ -24,7 +24,8 @@
                     <h1>Ваши анкеты</h1>
                     <a href="{% url 'Posts:create' %}" class="btn btn-outline-primary">Добавить анкету</a>
 {#                    <hr>#}
-                        <table class="table table-hover mt-3 ">
+                    <div class="">
+                        <table class="col justify-content-xl-center ">
                             <thead class="text-center">
                             <tr >
                                 <th scope="col">Анкеты №</th>
@@ -41,11 +42,12 @@
                                     <td>{{ post.name }}</td>
                                     <td>{% if post.end_date %}{{ post.end_date|count_day}} {% else %} 0 {% endif %}</td>
                                     <td>{% if post.user_active %}<a href="{% if not post.admin_active %}#{% else %}{% url 'Posts:active_state' id=post.id%}{% endif %}" class="{% if not post.admin_active %}disabled {% endif %}">{% if not post.admin_active %}Включить{% else %}Отключить{% endif %} </a>{% else %}<a href="{% if not post.admin_active %}#{% else %}{% url 'Posts:active_state' id=post.id%}{% endif %}" class="{% if not post.admin_active %}disabled {% endif %}">{% if not post.admin_active %}Включить{% else %}Включить{% endif %} </a>{% endif %}
-                                    <td><a href="{% url 'Posts:edit' id=post.id%}" class="btn btn-info">Изменить</a><span> </span><a href="" class="btn btn-danger">Удалить</a></td>
+                                    <td><a href="{% url 'Posts:edit' id=post.id%}" class="">Изменить</a><span> </span><a href="" class="">Удалить</a></td>
                                 </tr>
                             {% endfor %}
                             </tbody>
                         </table>
+                    </div>
                 </div>
             {% else %}
                 <div class="profile bg-light p-5">

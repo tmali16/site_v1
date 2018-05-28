@@ -119,114 +119,114 @@
                 </div>
                 <hr>
                 {#                {% for serv in service %}#}
-            <div class="row">
-            {% if serv_instance.main_classic or serv_instance.main_blowJob_w_condom or serv_instance.main_cunni or serv_instance.main_group_sex or serv_instance.main_lesbi_lesbi %}
-                <div class="col-sm-3 mb-2">
-                    <div class="card">
-                        <div class="card-header bg-secondary text-white p-2">Основные услуги</div>
-                        <div class="card-body p-1">
-                            <ul class="list-group list-group-flush">
-                                {% if serv_instance.main_classic %}<li class="list-group-item p-1">Классический</li>{% endif%}
-                                {% if serv_instance.main_blowJob_w_condom %}<li class="list-group-item p-1">Минет с презирвативом</li>{% endif%}
-                                {% if serv_instance.main_cunni %}<li class="list-group-item p-1">Кунилингус</li>{% endif%}
-                                {% if serv_instance.main_group_sex%}<li class="list-group-item p-1">Группавой секс</li>{% endif%}
-                                {% if serv_instance.main_lesbi_lesbi %}<li class="list-group-item p-1">Лезбийский секс</li>{% endif%}
-                                {% if serv_instance.mbr %}<li class="list-group-item p-1">Минет без презерватива <label class="text-danger"> + {{ serv_instance.mbr_price }}</label></li>{% endif%}
-                                {% if serv_instance.anal_sex %}<li class="list-group-item p-1">Анальный секс <label class="text-danger"> + {{ serv_instance.anal_sex_price }}</label></li>{% endif%}
-                            </ul>
+                <div class="row">
+                {% if serv_instance.main_classic or serv_instance.main_blowJob_w_condom or serv_instance.main_cunni or serv_instance.main_group_sex or serv_instance.main_lesbi_lesbi %}
+                    <div class="col-sm-3 mb-2">
+                        <div class="card">
+                            <div class="card-header bg-secondary text-white p-2">Основные услуги</div>
+                            <div class="card-body p-1">
+                                <ul class="list-group list-group-flush">
+                                    {% if serv_instance.main_classic %}<li class="list-group-item p-1">Классический</li>{% endif%}
+                                    {% if serv_instance.main_blowJob_w_condom %}<li class="list-group-item p-1">Минет с презирвативом</li>{% endif%}
+                                    {% if serv_instance.main_cunni %}<li class="list-group-item p-1">Кунилингус</li>{% endif%}
+                                    {% if serv_instance.main_group_sex%}<li class="list-group-item p-1">Группавой секс</li>{% endif%}
+                                    {% if serv_instance.main_lesbi_lesbi %}<li class="list-group-item p-1">Лезбийский секс</li>{% endif%}
+                                    {% if serv_instance.mbr %}<li class="list-group-item p-1">Минет без презерватива <label class="text-danger"> + {{ serv_instance.mbr_price }}</label></li>{% endif%}
+                                    {% if serv_instance.anal_sex %}<li class="list-group-item p-1">Анальный секс <label class="text-danger"> + {{ serv_instance.anal_sex_price }}</label></li>{% endif%}
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-            {% endif %}
-            {% if serv_instance.dop_end_mouth or serv_instance.dop_end_face or serv_instance.dop_glub_minet or serv_instance.dop_toys or serv_instance.dop_role_game or serv_instance.dop_couple_service or serv_instance.dop_video or serv_instance.dop_company %}
-                <div class="col-sm-2 mb-2">
-                    <div class="card">
-                        <div class="card-header bg-secondary text-white p-2">Допол. услуги</div>
-                        <div class="card-body p-1">
-                            <ul class="list-group list-group-flush">
-                                {% if serv_instance.dop_end_mouth %}<li class="list-group-item p-1">Кончить в рот</li>{% endif%}
-                                {% if serv_instance.dop_end_face %}<li class="list-group-item p-1">Кончить на лицо</li>{% endif%}
-                                {% if serv_instance.dop_glub_minet %}<li class="list-group-item p-1">Глубокий минет</li>{% endif%}
-                                {% if serv_instance.dop_toys%}<li class="list-group-item p-1">Игрушки</li>{% endif%}
-                                {% if serv_instance.dop_role_game %}<li class="list-group-item p-1">Ролевые игры</li>{% endif%}
-                                {% if serv_instance.dop_couple_service %}<li class="list-group-item p-1">Услиги супружиским парам</li>{% endif%}
-                                {% if serv_instance.dop_video %}<li class="list-group-item p-1">Фото/Видео съемки</li>{% endif%}
-                                {% if serv_instance.dop_company %}<li class="list-group-item p-1">Сопровождение</li>{% endif%}
-                            </ul>
+                {% endif %}
+                {% if serv_instance.dop_end_mouth or serv_instance.dop_end_face or serv_instance.dop_glub_minet or serv_instance.dop_toys or serv_instance.dop_role_game or serv_instance.dop_couple_service or serv_instance.dop_video or serv_instance.dop_company %}
+                    <div class="col-sm-2 mb-2">
+                        <div class="card">
+                            <div class="card-header bg-secondary text-white p-2">Допол. услуги</div>
+                            <div class="card-body p-1">
+                                <ul class="list-group list-group-flush">
+                                    {% if serv_instance.dop_end_mouth %}<li class="list-group-item p-1">Кончить в рот</li>{% endif%}
+                                    {% if serv_instance.dop_end_face %}<li class="list-group-item p-1">Кончить на лицо</li>{% endif%}
+                                    {% if serv_instance.dop_glub_minet %}<li class="list-group-item p-1">Глубокий минет</li>{% endif%}
+                                    {% if serv_instance.dop_toys%}<li class="list-group-item p-1">Игрушки</li>{% endif%}
+                                    {% if serv_instance.dop_role_game %}<li class="list-group-item p-1">Ролевые игры</li>{% endif%}
+                                    {% if serv_instance.dop_couple_service %}<li class="list-group-item p-1">Услиги супружиским парам</li>{% endif%}
+                                    {% if serv_instance.dop_video %}<li class="list-group-item p-1">Фото/Видео съемки</li>{% endif%}
+                                    {% if serv_instance.dop_company %}<li class="list-group-item p-1">Сопровождение</li>{% endif%}
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-            {% endif %}
-            {% if serv_instance.massage_relax or serv_instance.massage_classic or serv_instance.massage_profi or serv_instance.massage_tiski or serv_instance.massage_prostat or serv_instance.massage_erotic or serv_instance.massage_sakura %}
-                <div class="col-sm-2 mb-2">
-                    <div class="card">
-                        <div class="card-header bg-secondary text-white p-2">Массаж</div>
-                        <div class="card-body p-1">
-                            <ul class="list-group list-group-flush">
-                                {% if serv_instance.massage_relax %}<li class="list-group-item p-1">Раслобляющий массаж</li>{% endif%}
-                                {% if serv_instance.massage_classic %}<li class="list-group-item p-1">Классический массаж</li>{% endif%}
-                                {% if serv_instance.massage_profi %}<li class="list-group-item p-1">Проффесиональный массаж</li>{% endif%}
-                                {% if serv_instance.massage_tiski%}<li class="list-group-item p-1">Тайский массаж</li>{% endif%}
-                                {% if serv_instance.massage_prostat %}<li class="list-group-item p-1">Массаж простаты</li>{% endif%}
-                                {% if serv_instance.massage_erotic %}<li class="list-group-item p-1">Эротический массаж</li>{% endif%}
-                                {% if serv_instance.massage_sakura %}<li class="list-group-item p-1">Ветка сакуры</li>{% endif%}
-                            </ul>
+                {% endif %}
+                {% if serv_instance.massage_relax or serv_instance.massage_classic or serv_instance.massage_profi or serv_instance.massage_tiski or serv_instance.massage_prostat or serv_instance.massage_erotic or serv_instance.massage_sakura %}
+                    <div class="col-sm-2 mb-2">
+                        <div class="card">
+                            <div class="card-header bg-secondary text-white p-2">Массаж</div>
+                            <div class="card-body p-1">
+                                <ul class="list-group list-group-flush">
+                                    {% if serv_instance.massage_relax %}<li class="list-group-item p-1">Раслобляющий массаж</li>{% endif%}
+                                    {% if serv_instance.massage_classic %}<li class="list-group-item p-1">Классический массаж</li>{% endif%}
+                                    {% if serv_instance.massage_profi %}<li class="list-group-item p-1">Проффесиональный массаж</li>{% endif%}
+                                    {% if serv_instance.massage_tiski%}<li class="list-group-item p-1">Тайский массаж</li>{% endif%}
+                                    {% if serv_instance.massage_prostat %}<li class="list-group-item p-1">Массаж простаты</li>{% endif%}
+                                    {% if serv_instance.massage_erotic %}<li class="list-group-item p-1">Эротический массаж</li>{% endif%}
+                                    {% if serv_instance.massage_sakura %}<li class="list-group-item p-1">Ветка сакуры</li>{% endif%}
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-            {% endif %}
-            {% if serv_instance.dance_profi or serv_instance.dance_NoProfi or insserv_instanceserv_instanceance.dance_lesbi_show or serv_instance.dance_lisbi  %}
-                <div class="col-sm-2 mb-2">
-                    <div class="card">
-                        <div class="card-header bg-secondary text-white p-2">Стритиз</div>
-                        <div class="card-body p-1">
-                            <ul class="list-group list-group-flush">
-                                {% if serv_instance.dance_profi %}<li class="list-group-item p-1">Стритиз профф.</li>{% endif%}
-                                {% if serv_instance.dance_NoProfi %}<li class="list-group-item p-1">Стриптиз не профи</li>{% endif%}
-                                {% if serv_instance.dance_lesbi_show%}<li class="list-group-item p-1">Откровенное лесби-шоу</li>{% endif%}
-                                {% if serv_instance.dance_lisbi %}<li class="list-group-item p-1">Легкое лесби шоу</li>{% endif%}
-                            </ul>
+                {% endif %}
+                {% if serv_instance.dance_profi or serv_instance.dance_NoProfi or insserv_instanceserv_instanceance.dance_lesbi_show or serv_instance.dance_lisbi  %}
+                    <div class="col-sm-2 mb-2">
+                        <div class="card">
+                            <div class="card-header bg-secondary text-white p-2">Стритиз</div>
+                            <div class="card-body p-1">
+                                <ul class="list-group list-group-flush">
+                                    {% if serv_instance.dance_profi %}<li class="list-group-item p-1">Стритиз профф.</li>{% endif%}
+                                    {% if serv_instance.dance_NoProfi %}<li class="list-group-item p-1">Стриптиз не профи</li>{% endif%}
+                                    {% if serv_instance.dance_lesbi_show%}<li class="list-group-item p-1">Откровенное лесби-шоу</li>{% endif%}
+                                    {% if serv_instance.dance_lisbi %}<li class="list-group-item p-1">Легкое лесби шоу</li>{% endif%}
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-            {% endif %}
-            {% if serv_instance.sado_bandaj or serv_instance.sado_gospoja or serv_instance.sado_rabyn or serv_instance.sado_dominant or serv_instance.sado_porka or serv_instance.sado_fetish or serv_instance.sado_trampling %}
-                <div class="col-sm-2 mb-2">
-                    <div class="card">
-                        <div class="card-header bg-secondary text-white p-2">Садо-маза</div>
-                        <div class="card-body p-1">
-                            <ul class="list-group list-group-flush">
-                                {% if serv_instance.sado_bandaj %}<li class="list-group-item p-1">Бандаж</li>{% endif%}
-                                {% if serv_instance.sado_gospoja %}<li class="list-group-item p-1">Госпожа</li>{% endif%}
-                                {% if serv_instance.sado_rabyn %}<li class="list-group-item p-1">Рабыня</li>{% endif%}
-                                {% if serv_instance.sado_dominant%}<li class="list-group-item p-1">Лекая доминация</li>{% endif%}
-                                {% if serv_instance.sado_porka %}<li class="list-group-item p-1">Порка</li>{% endif%}
-                                {% if serv_instance.sado_fetish %}<li class="list-group-item p-1">Фетиш</li>{% endif%}
-                                {% if serv_instance.sado_trampling %}<li class="list-group-item p-1">Трамплинг</li>{% endif%}
-                            </ul>
+                {% endif %}
+                {% if serv_instance.sado_bandaj or serv_instance.sado_gospoja or serv_instance.sado_rabyn or serv_instance.sado_dominant or serv_instance.sado_porka or serv_instance.sado_fetish or serv_instance.sado_trampling %}
+                    <div class="col-sm-2 mb-2">
+                        <div class="card">
+                            <div class="card-header bg-secondary text-white p-2">Садо-маза</div>
+                            <div class="card-body p-1">
+                                <ul class="list-group list-group-flush">
+                                    {% if serv_instance.sado_bandaj %}<li class="list-group-item p-1">Бандаж</li>{% endif%}
+                                    {% if serv_instance.sado_gospoja %}<li class="list-group-item p-1">Госпожа</li>{% endif%}
+                                    {% if serv_instance.sado_rabyn %}<li class="list-group-item p-1">Рабыня</li>{% endif%}
+                                    {% if serv_instance.sado_dominant%}<li class="list-group-item p-1">Лекая доминация</li>{% endif%}
+                                    {% if serv_instance.sado_porka %}<li class="list-group-item p-1">Порка</li>{% endif%}
+                                    {% if serv_instance.sado_fetish %}<li class="list-group-item p-1">Фетиш</li>{% endif%}
+                                    {% if serv_instance.sado_trampling %}<li class="list-group-item p-1">Трамплинг</li>{% endif%}
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-            {% endif %}
-            {% if serv_instance.extrim_anilingus or serv_instance.extrim_dojd_out or serv_instance.extrim_dojd_in or serv_instance.extrim_strapon or serv_instance.extrim_fisting_anal or serv_instance.extrim_fisting_vagin%}
-                <div class="col-sm-2 mb-2">
-                    <div class="card">
-                        <div class="card-header bg-secondary text-white p-2">Экстрим</div>
-                        <div class="card-body p-1">
-                            <ul class="list-group list-group-flush">
-                                {% if serv_instance.extrim_anilingus %}<li class="list-group-item p-1">Анилингус</li>{% endif%}
-                                {% if serv_instance.extrim_dojd_out %}<li class="list-group-item p-1">Золой дождь выдача</li>{% endif%}
-                                {% if serv_instance.extrim_dojd_in %}<li class="list-group-item p-1">Золотой дождь прием</li>{% endif%}
-                                {% if serv_instance.extrim_strapon%}<li class="list-group-item p-1">Страпон</li>{% endif%}
-                                {% if serv_instance.extrim_fisting_anal %}<li class="list-group-item p-1">Фистинг анальный</li>{% endif%}
-                                {% if serv_instance.extrim_fisting_vagin %}<li class="list-group-item p-1">Фистинг вагинальный</li>{% endif%}
-                            </ul>
+                {% endif %}
+                {% if serv_instance.extrim_anilingus or serv_instance.extrim_dojd_out or serv_instance.extrim_dojd_in or serv_instance.extrim_strapon or serv_instance.extrim_fisting_anal or serv_instance.extrim_fisting_vagin%}
+                    <div class="col-sm-2 mb-2">
+                        <div class="card">
+                            <div class="card-header bg-secondary text-white p-2">Экстрим</div>
+                            <div class="card-body p-1">
+                                <ul class="list-group list-group-flush">
+                                    {% if serv_instance.extrim_anilingus %}<li class="list-group-item p-1">Анилингус</li>{% endif%}
+                                    {% if serv_instance.extrim_dojd_out %}<li class="list-group-item p-1">Золой дождь выдача</li>{% endif%}
+                                    {% if serv_instance.extrim_dojd_in %}<li class="list-group-item p-1">Золотой дождь прием</li>{% endif%}
+                                    {% if serv_instance.extrim_strapon%}<li class="list-group-item p-1">Страпон</li>{% endif%}
+                                    {% if serv_instance.extrim_fisting_anal %}<li class="list-group-item p-1">Фистинг анальный</li>{% endif%}
+                                    {% if serv_instance.extrim_fisting_vagin %}<li class="list-group-item p-1">Фистинг вагинальный</li>{% endif%}
+                                </ul>
+                            </div>
                         </div>
                     </div>
+                {% endif %}
+                    {#                {% endfor %}#}
                 </div>
-            {% endif %}
-                {#                {% endfor %}#}
-            </div>
             </div>
         </div>
     </div>
