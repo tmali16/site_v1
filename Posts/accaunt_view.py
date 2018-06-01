@@ -1,6 +1,7 @@
+from django.contrib import messages
 from django.contrib.auth import login as auth_login, authenticate, logout
 from django.http import Http404
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.utils import timezone
 
 from Posts.accauntForm import *
@@ -17,7 +18,7 @@ def login(request):
         user = authenticate(username=username, password=password)
         auth_login(request, user)
         return redirect("Posts:profile")
-    return render(request, "accaunt_forms.html", {"authForm": form, "title": title, 'btn' : btnTitle})
+    return render(request, "accaunt_forms.html", {"authForm": form, "title": title, 'btn': btnTitle})
 
 
 def register_view(request):
@@ -36,7 +37,7 @@ def register_view(request):
     context = {
         'authForm': form,
         'title': title,
-        'btn' : btnTitle
+        'btn': btnTitle
 
     }
     return render(request, "accaunt_forms.html", context)
@@ -45,6 +46,30 @@ def register_view(request):
 def logout_view(request):
     logout(request)
     return redirect("/post")
+
+
+def profile_update(request, id=None):
+    title = "Регистрация"
+    btnTitle = 'Изменить'
+    instance = get_object_or_404(User, id=id)
+    form = UserRegisterForm(request.POST or None, instance=instance)
+    if form.is_valid():
+        user = form.save(commit=False)
+        password = form.cleaned_data.get("password")
+        user.set_password(password)
+        user.save()
+        # user_gains_perms(request, user_id=user.id)
+        new_user = authenticate(username=user.username, password=password)
+        auth_login(request, new_user)
+        messages.success(request, 'Изменеия сохранены')
+        return redirect("Posts:profile")
+    context = {
+        'authForm': form,
+        'title': title,
+        'btn': btnTitle
+
+    }
+    return render(request, "accaunt_form.html", context)
 
 
 def profile_view(request):

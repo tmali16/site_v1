@@ -3,6 +3,7 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 
+
 # Create your models here.
 
 class CommentManager(models.Manager):
@@ -16,10 +17,12 @@ class CommentManager(models.Manager):
         qs = super(CommentManager, self).filter(content_type=content_type, object_id=object_id).filter(parent=None)
         return qs
 
+
 class Comment(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1, on_delete=models.CASCADE)
-    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
-    object_id = models.PositiveIntegerField()
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1, on_delete=models.CASCADE, blank=True, null=True)
+    username = models.CharField(max_length=20, default='-')
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, blank=True, null=True)
+    object_id = models.PositiveIntegerField(default=1, blank=True, null=True)
     content_object = GenericForeignKey('content_type', 'object_id')
     parent = models.ForeignKey("self", null=True, blank=True, on_delete=models.CASCADE)
 
@@ -30,7 +33,6 @@ class Comment(models.Model):
 
     class Meta:
         ordering = ['-timestamp']
-
 
     def __str__(self):
         return str(self.user.username)

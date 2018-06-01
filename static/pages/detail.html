@@ -237,6 +237,7 @@
         {#    </div>#}
         {#        <div class="col-md-7 ">#}
         <div class="col-md-12 col-xs-12 col-lg-12 col-sm-12 ">
+        <div class="overflow">
             <div class="comment ">
                 <div class="comment-header">
                     <label class="h3 justify-content-between">Отзывы</label><span
@@ -245,7 +246,7 @@
                 <hr>
                 <form method="POST" action="">{% csrf_token %}
                     <div class="input-group">
-                        {{ comment_form }}
+                        {{ comment_form.as_p }}
                         <div class="input-group-append">
                             <button class="btn btn-outline-primary" type="submit"><i class="material-icons mt-1">send</i></button>
                         </div>
@@ -289,6 +290,7 @@
                 {% endfor %}
             </div>
         </div>
+    </div>
     </div>
     {#    </div>#}
     {#    </div>#}

@@ -6,12 +6,6 @@ from Posts.models import Post
 
 class Service(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    appart_1 = models.CharField(max_length=10, default="-", blank=True)
-    appart_2 = models.CharField(max_length=10, default="-", blank=True)
-    appart_naigth = models.CharField(max_length=10, default="-", blank=True)
-    outside_1 = models.CharField(max_length=10, default="-", blank=True)
-    outside_2 = models.CharField(max_length=10, default="-", blank=True)
-    outside_nigth = models.CharField(max_length=10, default="-", blank=True)
 
     main_classic = models.BooleanField(default=False)
     main_blowJob_w_condom = models.BooleanField(default=False)

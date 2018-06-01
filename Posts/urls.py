@@ -1,6 +1,8 @@
 from django.conf import settings
 from django.conf.urls import url
 from django.conf.urls.static import static
+from django.urls import include
+
 from Posts.accaunt_view import *
 from Posts import views
 app_name = "Posts"
@@ -16,6 +18,7 @@ urlpatterns = [
     url(r'^(?P<id>\d+)/active/$', views.active_state, name="active_state"),
     url(r'^(?P<id>\d+)/$', views.post_detail, name='detail'),
     url(r'^(?P<id>\d+)/edit/$', views.post_update, name="edit"),
+    url(r'^(?P<id>\d+)/edit_profile/$', profile_update, name="prof_ed"),
 
 
     url(r'^filter_1/$', views.filter_excpencive, name="expencive"),

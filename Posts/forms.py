@@ -20,11 +20,20 @@ class pForm(forms.ModelForm):
     eye = forms.ModelChoiceField(queryset=eyes.objects.all(), required=False, label='глаза', widget=forms.Select(attrs={'class': 'form-control form-control-sm'}))
     types = forms.ModelChoiceField(queryset=types.objects.all(), required=False, label='Тип', widget=forms.Select(attrs={'class': 'form-control form-control-sm'}))
     hair = forms.ModelChoiceField(queryset=haire.objects.all(), required=False, label='Волосы', widget=forms.Select(attrs={'class': 'form-control form-control-sm'}))
-    image_1 = forms.ImageField(required=True, label='Фото 1')
+    image_1 = forms.ImageField(required=True, label='Фото 1', widget=forms.ClearableFileInput(attrs={'accept':'.jpg, .jpeg, .png'}))
     image_2 = forms.ImageField(required=False, label='Фото 2')
     image_3 = forms.ImageField(required=False, label='Фото 3')
     image_4 = forms.ImageField(required=False, label='Фото 4')
     image_5 = forms.ImageField(required=False, label='Фото 5')
+    appart_1 = forms.CharField(label='1-Час',required=True, widget=forms.TextInput(attrs={'class':'form-control form-control-sm'}))
+    appart_2 = forms.CharField(label='2-Часа',required=False, widget=forms.TextInput(attrs={'class':'form-control form-control-sm'}))
+    appart_naigth = forms.CharField(label='Ночь',required=False, widget=forms.TextInput(attrs={'class':'form-control form-control-sm'}))
+    outside_1 = forms.CharField(label='1-Час',required=False, widget=forms.TextInput(attrs={'class':'form-control form-control-sm'}))
+    outside_2 = forms.CharField(label='2-Часа',required=False, widget=forms.TextInput(attrs={'class':'form-control form-control-sm'}))
+    outside_nigth = forms.CharField(label='Ночь',required=False, widget=forms.TextInput(attrs={'class':'form-control form-control-sm'}))
+    sauna_1 = forms.CharField(label='1-час',required=False, widget=forms.TextInput(attrs={'class':'form-control form-control-sm'}))
+    sauna_2 = forms.CharField(label='2-Часа',required=False, widget=forms.TextInput(attrs={'class':'form-control form-control-sm'}))
+    sauna_nigth = forms.CharField(label='Ночь',required=False, widget=forms.TextInput(attrs={'class':'form-control form-control-sm'}))
 
     def __init__(self, *args, **kwargs):
         # first call parent's constructor
@@ -47,18 +56,17 @@ class pForm(forms.ModelForm):
             'image_2',
             'image_3',
             'image_4',
-            'image_5'
+            'image_5',
+            'appart_1',
+            'appart_2',
+            'appart_naigth',
+            'outside_1',
+            'outside_2',
+            'outside_nigth',
         ]
 
 
 class ServiceForm(forms.ModelForm):
-    appart_1 = forms.CharField(label='1-Час',required=False, widget=forms.TextInput(attrs={'class':'form-control form-control-sm'}))
-    appart_2 = forms.CharField(label='2-Часа',required=False, widget=forms.TextInput(attrs={'class':'form-control form-control-sm'}))
-    appart_naigth = forms.CharField(label='Ночь',required=False, widget=forms.TextInput(attrs={'class':'form-control form-control-sm'}))
-    outside_1 = forms.CharField(label='1-Час',required=False, widget=forms.TextInput(attrs={'class':'form-control form-control-sm'}))
-    outside_2 = forms.CharField(label='2-аса',required=False, widget=forms.TextInput(attrs={'class':'form-control form-control-sm'}))
-    outside_nigth = forms.CharField(label='Ноь',required=False, widget=forms.TextInput(attrs={'class':'form-control form-control-sm'}))
-
     main_classic = forms.CharField(required=False,label='Класический ', widget=forms.CheckboxInput())
     main_blowJob_w_condom = forms.CharField(required=False,label='Минет с презирвативом', widget=forms.CheckboxInput())
     main_cunni = forms.CharField(required=False,label='Кунилингус', widget=forms.CheckboxInput())
@@ -110,12 +118,7 @@ class ServiceForm(forms.ModelForm):
     class Meta:
         model = Service
         fields = [
-            'appart_1',
-            'appart_2',
-            'appart_naigth',
-            'outside_1',
-            'outside_2',
-            'outside_nigth',
+
             # -----------------------------
             "main_classic", "main_blowJob_w_condom", "main_cunni", "main_group_sex", "main_lesbi_lesbi",
             "mbr", "mbr_price", "anal_sex", "anal_sex_price",

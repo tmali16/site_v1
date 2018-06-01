@@ -15,11 +15,14 @@
         <link rel="stylesheet" href="{% static 'libs/bootstrap4/css/bootstrap.min.css' %}">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Nunito:300, 400" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+
     {% endblock link %}
     <title>{{ title }}</title>
 </head>
 
-<body>
+<body >
 {% block nav %}
     {% include 'nav-bar.html' %}
 {% endblock %}
@@ -41,11 +44,22 @@ $(function() {
         $('#myInput').trigger('focus')
     });
 });
+$(function () {
+   var grid_view = getById('#grid-view');
+   var list_view = getById('#grid-view') ;
+   grid_view.click(function () {
+       alert('yes!')
+   });
+
+});
+   function test() {
+       document.getElementById("#grid-view").click();
+   }
+</script>
 {% block js %}
 {% endblock %}
-</script>
 <footer class="bottom-footer">
-    <div class="alert-warning footer-color"><p>footer</p></div>
+    <div class="bg-dark  footer-color"><p>footer</p></div>
 </footer>
 </body>
 </html>

@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 {% block body %}
+    <br>
     <div class="container">
         <div class="row justify-content-center">
+
             <div class="col-md-5 col-sm col-lg-5 col-xs-5 bg-light pt-4">
                 <div class="header border-bottom">
                     <label for="" class="h3">
@@ -11,7 +13,19 @@
                 <form action="" method="post">{% csrf_token %}
                     <div class="modal-body">
                         <div class="form-group form-group-sm">
-                            {{ authForm.as_p }}
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <div class="alert alert-{% if message.tags %}{{ message.tags }}{% endif %}"
+                                         role="alert">
+                                        {{ message }}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                            {{ authForm.username }}
+                            {{ authForm.email }}
+                            {{ authForm.email2 }}
+                            {{ authForm.password }}
+                            {{ authForm.password2 }}
                         </div>
                     </div>
                     <div class="modal-footer">

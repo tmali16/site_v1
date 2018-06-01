@@ -4,13 +4,6 @@ from Service.models import Service
 
 
 class ServiceForm(forms.ModelForm):
-    appart_1 = forms.CharField(label='1-Час',required=False, widget=forms.TextInput(attrs={'class':'form-control form-control-sm'}))
-    appart_2 = forms.CharField(label='2-Часа',required=False, widget=forms.TextInput(attrs={'class':'form-control form-control-sm'}))
-    appart_naigth = forms.CharField(label='Ночь',required=False, widget=forms.TextInput(attrs={'class':'form-control form-control-sm'}))
-    outside_1 = forms.CharField(label='1-Час',required=False, widget=forms.TextInput(attrs={'class':'form-control form-control-sm'}))
-    outside_2 = forms.CharField(label='2-аса',required=False, widget=forms.TextInput(attrs={'class':'form-control form-control-sm'}))
-    outside_nigth = forms.CharField(label='Ноь',required=False, widget=forms.TextInput(attrs={'class':'form-control form-control-sm'}))
-
     main_classic = forms.CharField(required=False,label='Класический ', widget=forms.CheckboxInput())
     main_blowJob_w_condom = forms.CharField(required=False,label='Минет с презирвативом', widget=forms.CheckboxInput())
     main_cunni = forms.CharField(required=False,label='Кунилингус', widget=forms.CheckboxInput())
@@ -62,12 +55,6 @@ class ServiceForm(forms.ModelForm):
     class Meta:
         model = Service
         fields = [
-            'appart_1',
-            'appart_2',
-            'appart_naigth',
-            'outside_1',
-            'outside_2',
-            'outside_nigth',
             # -----------------------------
             "main_classic", "main_blowJob_w_condom", "main_cunni", "main_group_sex", "main_lesbi_lesbi",
             "mbr", "mbr_price", "anal_sex", "anal_sex_price",

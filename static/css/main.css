@@ -1,13 +1,20 @@
+.html{
+    height: 100%;
+    width: 100%;
+}
 body{
     font-family: 'Nunito', sans-serif !important;
-    background-color: #4e4e4e !important;
-}
+    background: url("../../media/bg.jpg") no-repeat center center fixed;}
+
 .post_panel{
     /*height: 150px ;*/
     margin-bottom: 20px;
 }
 .panel{
     border: 0px;
+}
+.nav-primary{
+    background-color: #375a7f !important;
 }
 .default-bg-color{
     background-color: #ffffff;
@@ -37,10 +44,7 @@ body{
     height: 100% !important;
 }
 /*---------------------------------------------------------------------------------------------*/
-a{
-    color: #000 !important;
-    text-decoration: none !important;
-}
+
 .nav-item:hover{
     color: #00ccff !important;
 }
@@ -154,18 +158,22 @@ a{
 .vip{
     background: #ff0056 none repeat scroll 0 0;
 }
+.standart{
+    background: #005eff none repeat scroll 0 0;
+    color: #000;
+}
 .status{
     color: #fdf2ff;
     font-size: 18px;
     font-weight: 500;
-    left: -24px;
+    /*left: -24px;*/
     margin: 0;
-    padding: 1px 33px;
+    padding: 3px 10px;
     position: absolute;
-    text-align: center;
+    text-align: right;
     text-transform: uppercase;
-    top: 8px;
-    transform: rotate(-45deg);
+    top: 210px;
+    /*transform: rotate(-45deg);*/
     z-index: 99;
 }
 .black-border{
@@ -178,6 +186,7 @@ a{
     margin-top: 50px;
     width: 100%;
     height: 100px;
+    opacity: .5;
 }
 .footer-color{
     height: 100%;
@@ -186,4 +195,73 @@ a{
 .por-dse div ul{
     padding-left: 15px;
     margin-bottom: 0px;
+}
+.views nav{
+    float: right;
+}
+.views{
+    background-color: #7777;
+    height: 100px;
+}
+
+.quick-right-text .phone i {
+    border-radius: 50%;
+    background-color: #fff;
+    padding: 5px;
+    color: #000
+}
+
+.quick-right-text .phone i:hover{
+    transform: rotate(-95deg);
+    transition-delay: .25s;
+    transition-timing-function: ease-out;
+}
+
+.phone{
+    /*background-color: #14dbef;*/
+    margin: 20px 0;
+}
+.phone a{
+    font-size: 22px;
+}
+.quick-right-text .phone a:hover{
+    text-decoration: none;
+    transform: scale(5);
+
+}
+.overflow{
+    position: absolute;
+    /*background-color: #000;*/
+    /*opacity:  0.5;*/
+    /*z-index: 999;*/
+    width: 100%;
+    height:100%;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+.overflow p{
+    text-align: center;
+    margin-top: 100px;
+    vertical-align: middle;
+    color: #fff;
+    font-size: 24px;
+
+}
+.overflow:hover{
+    -webkit-transform: scale(.11);
+    -moz-transform: scale( 1.1);
+    -ms-transform: scale( 1.1);
+    -o-transform: scale( 1.1);
+    transform: scale( 1.1);
+    -webkit-transition: all .3s ease-out;
+    -moz-transition: all .3s ease-out;
+    -ms-transition: all .3s ease-out;
+    -o-transition: all .3s ease-out;
+    transition: all .3s ease-out;
+    background-color: #000;
+    opacity:  0.5;
+    z-index: 999;
 }

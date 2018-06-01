@@ -5,8 +5,16 @@
         <div class="row justify-content-center">
             <div class="col-md-12 col-lg-7 col-xs-12 col-sm">
                 <br>
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{% if message.tags %}{{ message.tags }}{% endif %}" role="alert">
+                    {{ message}}
+                </div>
+                {% endfor %}
+            {% endif %}
                 <div class="bg-light  shadow">
                     <div class="header p-4 "><h1>Новая анкета</h1></div>
+
                     <form action="" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="row justify-content-center">
@@ -69,16 +77,16 @@
                                     <table class="col">
                                         <tbody class="table table-borderless">
                                         <tr class="col-sm">
-                                            <td class=""><label for="{{ sform.appart_1.id_for_label }}"class="mr-3">1-Час</label></td>
-                                            <td>{{ sform.appart_1 }}</td>
+                                            <td class=""><label for="{{ form.appart_1.id_for_label }}"class="mr-3">1-Час</label></td>
+                                            <td>{{ form.appart_1 }}</td>
                                         </tr>
                                         <tr>
-                                            <td><label for="{{ sform.appart_2.id_for_label }}" class="mt-2 mb-0">2-Час</label></td>
-                                            <td>{{ sform.appart_2 }}</td>
+                                            <td><label for="{{ form.appart_2.id_for_label }}" class="mt-2 mb-0">2-Час</label></td>
+                                            <td>{{ form.appart_2 }}</td>
                                         </tr>
                                         <tr>
-                                            <td><label for="{{ sform.appart_naigth.id_for_label }}" class="mt-2 mb-0">Ночь</label></td>
-                                            <td>{{ sform.appart_naigth }}</td>
+                                            <td><label for="{{ form.appart_naigth.id_for_label }}" class="mt-2 mb-0">Ночь</label></td>
+                                            <td>{{ form.appart_naigth }}</td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -86,26 +94,45 @@
                                 <div class="header border bg-info border p-2 text-white">Выезд</div>
                                 <div class="appart border">
                                     <div class="appart  p-1">
-                                        <table class="">
+                                        <table class="col">
                                             <tbody class="table table-borderless">
                                             <tr>
-                                                <td><label for="{{ sform.outside_1.id_for_label }}" class="mb-0">1-Час</label></td>
-                                                <td>{{ sform.outside_1 }}</td>
+                                                <td><label for="{{ form.outside_1.id_for_label }}" class="mb-0">1-Час</label></td>
+                                                <td>{{ form.outside_1 }}</td>
                                             </tr>
                                             <tr>
-                                                <td><label for="{{ sform.outside_2.id_for_label }}" class="mt-2 mb-0">2-Час</label></td>
-                                                <td>{{ sform.outside_2 }}</td>
+                                                <td><label for="{{ form.outside_2.id_for_label }}" class="mt-2 mb-0">2-Час</label></td>
+                                                <td>{{ form.outside_2 }}</td>
                                             </tr>
                                             <tr>
-                                                <td><label for="{{ sform.outside_nigth.id_for_label }}" class="mt-2 mb-0">Ночь</label></td>
-                                                <td>{{ sform.outside_nigth }}</td>
+                                                <td><label for="{{ form.outside_nigth.id_for_label }}" class="mt-2 mb-0">Ночь</label></td>
+                                                <td>{{ form.outside_nigth }}</td>
                                             </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
-
-
+                                <div class="header border bg-info border p-2 text-white">Сауна</div>
+                                <div class="appart border">
+                                    <div class="appart  p-1">
+                                        <table class="col">
+                                            <tbody class="table table-borderless">
+                                            <tr>
+                                                <td><label for="{{ form.sauna_1.id_for_label }}" class="mb-0">1-Час</label></td>
+                                                <td>{{ form.sauna_1 }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><label for="{{ form.sauna_2.id_for_label }}" class="mt-2 mb-0">2-Час</label></td>
+                                                <td>{{ form.sauna_2 }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><label for="{{ form.sauna_nigth.id_for_label }}" class="mt-2 mb-0">Ночь</label></td>
+                                                <td>{{ form.sauna_nigth }}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                                 <div class="header bg-info p-2 text-white">Основные услуги</div>
                                 <div class="form-check border pt-2 mb-3">{{ sform.content_type }}{{ service_form.object_id }}
                                     {{ sform.main_classic }}<label for="{{ sform.main_classic.id_for_label }}" class="ml-3">{{ sform.main_classic.label }}</label><br>
@@ -181,12 +208,13 @@
                                 </div>
 
                                 <hr>
-                                <input type="submit" value="Создать анкету" class="btn btn-primary float-right">
+                                <input type="submit" value="Создать анкету" class="btn btn-primary float-right mb-3">
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
+
         </div>
     </div>
 {% endblock %}

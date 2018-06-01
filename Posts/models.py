@@ -69,6 +69,16 @@ class Post(models.Model):
     update = models.DateTimeField(auto_now=True, auto_now_add=False)
     timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
 
+    appart_1 = models.CharField(max_length=10, default="-", blank=True)
+    appart_2 = models.CharField(max_length=10, default="-", blank=True)
+    appart_naigth = models.CharField(max_length=10, default="-", blank=True)
+    outside_1 = models.CharField(max_length=10, default="-", blank=True)
+    outside_2 = models.CharField(max_length=10, default="-", blank=True)
+    outside_nigth = models.CharField(max_length=10, default="-", blank=True)
+    sauna_1 = models.CharField(max_length=10, default="-", blank=True)
+    sauna_2 = models.CharField(max_length=10, default="-", blank=True)
+    sauna_night = models.CharField(max_length=10, default="-", blank=True)
+
     active_counter = models.IntegerField(blank=True, null=True)
     user_active = models.BooleanField(default=True)
     end_date = models.DateTimeField(auto_now_add=False, null=True, blank=True)

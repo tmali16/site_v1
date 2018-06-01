@@ -3,16 +3,23 @@
 {% load cust_tamplate %}
 {% block body %}
     <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-9 mt-5">
-            <div class="profile bg-light p-5">
-                <h1>Профиль пользователя</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-9 mt-5">
+                <div class="profile bg-light p-5">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{% if message.tags %}{{ message.tags }}{% endif %}" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    <h1>Профиль пользователя</h1>
                 <hr>
                 <label>Имя пользователя: </label> {{ user.username }}<br>
                 <label>E-mail: </label> {{ user.email }}<br>
                 <label>Дата регистрации: </label> {{ user.date_joined }}<br>
                 <hr>
-                {#                <a href="{% url 'posts:update' %}" class="float-right">Изменить</a><br>#}
+                 <a href="{% url 'Posts:prof_ed' id=request.user.id %}" class="float-right">Изменить</a><br>
             </div>
 
         </div>
@@ -24,25 +31,29 @@
                     <h1>Ваши анкеты</h1>
                     <a href="{% url 'Posts:create' %}" class="btn btn-outline-primary">Добавить анкету</a>
 {#                    <hr>#}
-                    <div class="">
+                    <div class="mt-4">
                         <table class="col justify-content-xl-center ">
-                            <thead class="text-center">
-                            <tr >
-                                <th scope="col">Анкеты №</th>
+                            <thead class="text-center bg-info text-light">
+                            <tr class="border-bottom">
+                                <th scope="col">№</th>
                                 <th scope="col">Имя</th>
                                 <th scope="col">Активный</th>
                                 <th scope="col">Статус</th>
-                                <th scope="col">Событие</th>
+                                <th scope="col"></th>
                             </tr>
                             </thead>
                             <tbody class="text-center">
                             {% for post in posts %}
-                                <tr class="text-center">
+                                <tr class="text-center border-bottom">
                                     <td scope="row"><a href="{% url 'Posts:detail' id=post.id%}" class="">{{ post.id }}</a></td>
                                     <td>{{ post.name }}</td>
                                     <td>{% if post.end_date %}{{ post.end_date|count_day}} {% else %} 0 {% endif %}</td>
                                     <td>{% if post.user_active %}<a href="{% if not post.admin_active %}#{% else %}{% url 'Posts:active_state' id=post.id%}{% endif %}" class="{% if not post.admin_active %}disabled {% endif %}">{% if not post.admin_active %}Включить{% else %}Отключить{% endif %} </a>{% else %}<a href="{% if not post.admin_active %}#{% else %}{% url 'Posts:active_state' id=post.id%}{% endif %}" class="{% if not post.admin_active %}disabled {% endif %}">{% if not post.admin_active %}Включить{% else %}Включить{% endif %} </a>{% endif %}
-                                    <td><a href="{% url 'Posts:edit' id=post.id%}" class="">Изменить</a><span> </span><a href="" class="">Удалить</a></td>
+                                    <td><a data-toggle="collapse" href="#submitCollapse{{ post.id }}" role="button" aria-expanded="false" aria-controls="submitCollapse"><i class="fas fa-ellipsis-v text"></i></a>
+                                    <div class="collapse" id="submitCollapse{{ post.id }}">
+                                            <a href="{% url 'Posts:edit' id=post.id%}" class="btn btn-outline-info">Изменить</a><span> </span><a href="" class="btn btn-outline-danger">Удалить</a>
+                                        </div>
+                                    </td>
                                 </tr>
                             {% endfor %}
                             </tbody>

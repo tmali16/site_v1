@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from django import template
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
@@ -8,53 +10,6 @@ from Service.models import Service
 
 register = template.Library()
 
-@register.filter
-def appart_1(id):
-    if get_object_or_404(Service, post_id=id).appart_1 != '':
-        res = get_object_or_404(Service, post_id=id).appart_1
-    else:
-        res = '-'
-    return res
-
-@register.filter
-def appart_2(id):
-    if get_object_or_404(Service, post_id=id).appart_2 != '':
-        res = get_object_or_404(Service, post_id=id).appart_2
-    else:
-        res = '-'
-    return res
-@register.filter
-def appart_night(id):
-    if get_object_or_404(Service, post_id=id).appart_naigth != '':
-        res = get_object_or_404(Service, post_id=id).appart_naigth
-    else:
-        res = '-'
-    return res
-
-@register.filter
-def outside_1(id):
-    if get_object_or_404(Service, post_id=id).outside_1 != '':
-        res = get_object_or_404(Service, post_id=id).outside_1
-    else:
-        res = '-'
-    return res
-
-@register.filter
-def outside_2(id):
-    if get_object_or_404(Service, post_id=id).outside_2 != '':
-        res = get_object_or_404(Service, post_id=id).outside_2
-    else:
-        res = '-'
-    return res
-
-@register.filter
-def outside_night(id):
-    if get_object_or_404(Service, post_id=id).outside_nigth != '':
-        res = get_object_or_404(Service, post_id=id).outside_nigth
-    else:
-        res = '-'
-    return res
-
 
 @register.filter
 def comment_count(id):
@@ -64,12 +19,27 @@ def comment_count(id):
         res = '0'
     return res
 
+@register.filter
+def comment_post(id):
+    res = []
+    if Comment.objects.filter(object_id=id).count() > 0:
+        comments = Comment.objects.filter(object_id=id).all()
+        res.append(Post.objects.get(id=id).name)
+        print(res)
+    return res
+
 
 @register.filter
 def filter_comment(id):
-    instance = get_object_or_404(Post, id=id)
-    res = instance.comments
-    return res
+    comments = Comment.objects.filter(object_id=id).all() #.filter(timestamp__range=(timezone.now(), timezone.now() - timedelta(hours=1)))
+    r = []
+    for s in comments:
+        r.append(s.content)
+        if len(r) > 2:
+            break
+    print('=> '+str(id))
+    return r
+
 
 @register.filter
 def count_day(td):

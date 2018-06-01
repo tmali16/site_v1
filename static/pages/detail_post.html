@@ -1,10 +1,26 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block body %}
-<div class="dialog mt-4 mb-4">
+<div class="container ">
+    <div class="row mt-5">
+        <div class="col-md-3 col-sm-5 col-xs-3 col-lg-3 left-bar mb-4" >
+            {% include 'sideBar.html' %}
+        </div>
+    <div class="col-md-9 col-lg-9 col-sm-12 ">
     <div class="main-view modal-content p-3">
-        <div class="row">
+    {% if request.user.is_authenticated %}
+        <div class="tools mb-3">
+            <div class="button-group float-right">
+                {% if instance.user_active %}<a href="{% if not instance.admin_active %}#{% else %}{% url 'Posts:active_state' id=instance.id%}{% endif %}" class="btn btn-info mr-4{% if not instance.admin_active %} disabled {% endif %}">{% if not instance.admin_active %}Включить{% else %}Отключить{% endif %} </a>{% else %}<a href="{% if not instance.admin_active %}#{% else %}{% url 'Posts:active_state' id=instance.id%}{% endif %}" class="btn btn-info mr-4{% if not instance.admin_active %} disabled {% endif %}">{% if not instance.admin_active %}Включить{% else %}Включить{% endif %} </a>{% endif %}
+                <a href="{% url 'Posts:edit' id=instance.id %}" class="ml-auto btn btn-primary mr-4">Изменить</a>
+                <a href="" class="ml-auto btn btn-danger mr-4">Удалить</a>
+            </div>
+        </div>
+        <span class="border-bottom mb-3"></span>
+    {% endif %}
+        <div class="row justify-content-center">
             <div class="col-xs-5 col-sm-5">
+                <a href="{{ instance }}"></a>
                 <div class="quick-image">
                     <div class="single-quick-image tab-content text-center">
                         <div id="carousel{{ instance.id }}" class="carousel slide" data-ride="carousel">
@@ -40,30 +56,36 @@
             <div class="col-xs-6 col-sm-6">
                 <div class="quick-right">
                     <div class="quick-right-text">
-                        <h3><strong>{{ instance.name }}</strong></h3>
-                        <div class="border-bottom mt-3"></div>
+                        <label class="h3"><strong>{{ instance.name }} </strong></label><label class="float-right text-secondary"> {{ instance.age }} лет</label>
+                        <div class="border-top mt-1 mb-2"></div>
+                        <span for="" class="mt-1 phone"><a href="tel:{{ instance.phone  }}"><i class="fas fa-phone" style=""></i> {{ instance.phone }}</a></span>
+                        <div class="border-bottom mt-2"></div>
                         <div class="amount justify-content-center ">
                             <table class="col price-table mt-5 text-center">
                             <thead class="p-3 table-info">
                                 <th>Время</th>
                                 <th>Выезд</th>
                                 <th>Аппартмент</th>
+                                <th>Сауна</th>
                             </thead>
                             <tbody class="bg-light">
                             <tr>
                                 <td>1-Час</td>
                                 <td>{{ serv_instance.outside_1 }}</td>
                                 <td>{{ serv_instance.appart_1 }}</td>
+                                <td>{{ serv_instance.sauna_1 }}</td>
                             </tr>
                             <tr>
                                 <td scope="row">2-Час</td>
                                 <td>{{ serv_instance.outside_1 }}</td>
                                 <td>{{ serv_instance.appart_2 }}</td>
+                                <td>{{ serv_instance.sauna_2 }}</td>
                             </tr>
                             <tr>
                                 <td scope="row">Ночь</td>
                                 <td>{{ serv_instance.outside_nigth }}</td>
                                 <td>{{ serv_instance.appart_night }}</td>
+                                <td>{{ serv_instance.sauna_night }}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -119,11 +141,11 @@
             </div>
         </div>
     </div>
-</div>
 
     <div class="main-view modal-content">
     <div class="row justify-content-center">
         <div class="col-md-11 col-xs-5 col-lg-11 col-sm-5 ">
+{#            {% if not request.user.is_authenticated %}<div class="overflow"><p class="align-middle">You're not log in!</p></div>{% endif %}#}
             <div class="comment ">
                 <div class="comment-header">
                     <label class="h3 justify-content-between">Отзывы</label><span
@@ -132,7 +154,10 @@
                 <hr>
                 <form method="POST" action="">{% csrf_token %}
                     <div class="input-group">
-                        {{ comment_form }}
+                        {{ comment_form.content_type }}
+                        {{ comment_form.object_id }}
+                        {% if not request.user.is_authenticated %}{{ comment_form.username }}{% endif %}
+                        {{ comment_form.content }}
                         <div class="input-group-append">
                             <button class="btn btn-outline-primary" type="submit"><i class="material-icons mt-1">send</i></button>
                         </div>
@@ -142,7 +167,7 @@
                 {% for comment in comments %}
                     <blockquote class="mt-5 blockquote brd pl-3">
                         <label>{{ comment.content }}</label>
-                        <footer class="blockquote-footer mb-3">{{ comment.user }} | {{ comment.timestamp | timesince }}
+                        <footer class="blockquote-footer mb-3">{{ comment.username }} | {{ comment.timestamp | timesince }}
                             назад |
                             {% if comment.children.count > 0 %}
                                 <i class="material-icons pt-2" style="font-size: 14px">mode_comment</i>
@@ -154,7 +179,7 @@
                             {% for chl_comm in comment.children %}
                                 <blockquote class="reblockquote">
                                     <label class="">{{ chl_comm.content }}</label>
-                                    <footer class="blockquote-footer mb-3">{{ chl_comm.user }}
+                                    <footer class="blockquote-footer mb-3">{{ chl_comm.username }}
                                         | {{ chl_comm.timestamp | timesince }} назад
                                     </footer>
                                 </blockquote>
@@ -163,7 +188,10 @@
                             <form method="POST" action="">{% csrf_token %}
                                 <input type="hidden" name="parent_id" value="{{ comment.id }}">
                                 <div class="input-group">
-                                    {{ comment_form }}
+                                    {{ comment_form.content_type }}
+                                    {{ comment_form.object_id }}
+                                    {% if not request.user.is_authenticated %}{{ comment_form.username }}{% endif %}
+                                    {{ comment_form.content }}
                                     <div class="input-group-append">
                                         <button class="btn btn-outline-secondary" type="submit"><i class="material-icons mt-1">send</i></button>
                                     </div>
@@ -178,5 +206,7 @@
         </div>
     </div>
     </div>
-
+    </div>
+    </div>
+</div>
 {% endblock %}
