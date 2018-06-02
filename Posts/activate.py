@@ -6,7 +6,7 @@ import time
 import threading
 
 
-def checks():
+def active_object():
     for i in Post.objects.values_list('id', flat=True).filter(user_active=True).filter(admin_active=True).order_by('id'):
         toDay = timezone.now()
         a_active = get_object_or_404(Post, id=i).admin_active
@@ -17,6 +17,17 @@ def checks():
         else:
             pass
 
+
+def checks():
+    for i in Post.objects.values_list('id', flat=True).filter(user_active=True).filter(admin_active=True).order_by('id'):
+        toDay = timezone.now()
+        activ_days = get_object_or_404(Post, id=i).active_counter
+        e_date = get_object_or_404(Post, id=i).end_date
+
+        if toDay > e_date:
+            Post.objects.filter(id=i).update(active_counter=None)
+        else:
+            print(toDay)
 
 def count_to_end_active():
     for id in Post.objects.values_list('id', flat=True).filter(user_active=True).filter(admin_active=True).order_by(

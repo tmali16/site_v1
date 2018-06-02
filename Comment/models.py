@@ -20,7 +20,7 @@ class CommentManager(models.Manager):
 
 class Comment(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1, on_delete=models.CASCADE, blank=True, null=True)
-    username = models.CharField(max_length=20, default='-')
+    username = models.CharField(max_length=20, default='-', null=True, blank=True)
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, blank=True, null=True)
     object_id = models.PositiveIntegerField(default=1, blank=True, null=True)
     content_object = GenericForeignKey('content_type', 'object_id')

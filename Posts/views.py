@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.core.paginator import *
-from django.http import Http404, HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from datetime import *
 
@@ -91,17 +91,13 @@ def post_update(request, id=None):
 
 
 def post_delete(request, id=None):
-
     return render(request, "post_form.html")
 
 
 def post_detail(request, id=None):
     instance = get_object_or_404(Post, id=id)
     serviceInstance = get_object_or_404(Service, post_id=id)
-    if request.user.is_authenticated:
-        user = request.user
-    else:
-        user = get_object_or_404(User, id=2)
+
     if not request.user.is_authenticated:
         if not (instance.user_active and instance.admin_active):
             print("Not activate")
@@ -110,7 +106,10 @@ def post_detail(request, id=None):
         if request.user.id != instance.user_id:
             print('its not you anket')
             raise Http404
-    comment = Comment.objects.filter_by_instance(instance)
+    if request.user.is_authenticated:
+        user = request.user
+    else:
+        user = get_object_or_404(User, id=2)
     initial_data = {
         "content_type": instance.get_content_type,
         "object_id": instance.id
@@ -146,20 +145,36 @@ def post_detail(request, id=None):
             content=content_data,
             parent=parent_obj,
         )
-        return redirect('Posts:detail', id=obj_id)
+        return HttpResponseRedirect(new_comment.content_object.get_absolute_url())
+        # return redirect('Posts:detail', id=obj_id)
     else:
-        messages.warning(request, 'You are not log in!')
+        pass
+        # messages.warning(request, 'not valid comment')
     comments = instance.comments
     context = {
-        "instance": instance,
-        'serv_instance': serviceInstance,
         "comments": comments,
         "comment_form": comment_form,
+        "instance": instance,
+        'serv_instance': serviceInstance
     }
     return render(request, "detail_post.html", context)
 
 
+def test(request, id=None):
+    if request.GET:
+        u_name = request.GET['content']
+        return HttpResponse('no', content_type='text/html')
+
+
 # ------------------------------------------------------------------------------------
+def one_day(d):
+    return d - (d - 1)
+
+
+def count_end_date(d):
+    day = timezone.now() + timedelta(minutes=one_day(d))
+    return day
+
 
 def active_state(request, id):
     inst = get_object_or_404(Post, id=id)

@@ -1,0 +1,75 @@
+
+{% block comment %}
+<div class="comment ">
+    <div class="comment-header">
+        <label class="h3 justify-content-between">Отзывы</label><span class="badge badge-primary badge-pill">{{ comments.count }}</span>
+    </div>
+    <hr>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{% if message.tags %}{{ message.tags }}{% endif %}"
+                 role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <form method="POST" action="">{% csrf_token %}
+        {% if not request.user.is_authenticated %}{{ comment_form.username }}{% endif %}
+        <div class="input-group">
+            {{ comment_form.content_type }}
+            {{ comment_form.object_id }}
+            {{ comment_form.content }}
+            <div class="input-group-append"><button class="btn btn-outline-primary" type="submit"><i class="material-icons mt-1">send</i></button>
+            </div>
+        </div>
+    </form>
+    <hr>
+    {% for comment in comments %}
+        <blockquote class="mt-5 blockquote brd pl-3">
+            <label>{{ comment.content }}</label>
+            <footer class="blockquote-footer mb-3">{{ comment.username }}
+                | {{ comment.timestamp | timesince }}
+                назад |
+                {% if comment.children.count > 0 %}
+                    <i class="material-icons pt-2" style="font-size: 14px">mode_comment</i>
+                    {{ comment.children.count }}
+                    |{% endif %}<a href="#commentReplay{{ comment.id }}"
+                                   class="link replay-comment-btn" data-toggle="collapse"
+                                   role="button" aria-expanded="false"
+                                   aria-controls="commentReplay{{ comment.id }}"><i
+                        class="material-icons mt-1 " style="font-size: 16px">reply</i>
+                    Ответить</a>
+            </footer>
+            <div class="comment-reply collapse ml-3 brdid"
+                 id="commentReplay{{ comment.id }}" style="">
+                <div class="replaycomment pl-3">
+                    {% for chl_comm in comment.children %}
+                        <blockquote class="reblockquote">
+                            <label class="">{{ chl_comm.content }}</label>
+                            <footer class="blockquote-footer mb-3">{{ chl_comm.username }}
+                                | {{ chl_comm.timestamp | timesince }} назад
+                            </footer>
+                        </blockquote>
+                    {% endfor %}
+                    <hr>
+                    <form method="POST" action="">{% csrf_token %}
+                        <input type="hidden" name="parent_id" value="{{ comment.id }}">
+                        <div class="input-group">
+                            {{ comment_form.content_type }}
+                            {{ comment_form.object_id }}
+                            {% if not request.user.is_authenticated %}
+                                {{ comment_form.username }}{% endif %}
+                            {{ comment_form.content }}
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="submit"><i
+                                        class="material-icons mt-1">send</i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </blockquote>
+        <hr>
+    {% endfor %}
+</div>
+{% endblock %}

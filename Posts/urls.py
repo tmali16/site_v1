@@ -5,6 +5,7 @@ from django.urls import include
 
 from Posts.accaunt_view import *
 from Posts import views
+
 app_name = "Posts"
 urlpatterns = [
     url(r'^$', views.post_list, name="list"),
@@ -20,6 +21,10 @@ urlpatterns = [
     url(r'^(?P<id>\d+)/edit/$', views.post_update, name="edit"),
     url(r'^(?P<id>\d+)/edit_profile/$', profile_update, name="prof_ed"),
 
+    # -----------------------ajax--------------------------------
+    url(r'^(?P<id>\d+)/$', views.test, name="test"),
+
+    # ---------------------filter-------------------------------
 
     url(r'^filter_1/$', views.filter_excpencive, name="expencive"),
     url(r'^filter_2/$', views.yunger, name="yunger"),
