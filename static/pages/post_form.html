@@ -38,32 +38,32 @@
                                     <label for="{{ form.note.id_for_label }}" class="inline mr-3">{{ form.note.label }} </label>{{ form.note }}
                                     <div class="panel">
                                         <div class="panel-header bg-info mt-3 p-2"><label>Foto</label></div>
-                                        <div class="panel-body border p-2 services">
+                                        <div class="panel-body border p-2 services ">
                                         <table class="">
-                                            <tbody>
-                                            <tr>
+                                            <tbody class="">
+                                            <tr class="mb-1">
                                                 <td>{{ form.image_1 }}</td>
-                                                <td><label for="{{ form.image_1.id_for_label }}" class="mr-3 hidden-sm-down">{{ form.image_1.label|truncatechars:10 }}</label></td>
+                                                <td><label for="{{ form.image_1.id_for_label }}" class="hidden-sm-down">{{ form.image_1.label|truncatechars:10 }}</label></td>
 {#                                                <td>{% if instance.image_1 %}<a href="{{ instance.image_1.url}}">{{instance.image_1.url|truncatechars:9 }}</a></td>{% endif %}#}
                                             </tr>
-                                            <tr>
+                                            <tr class="mb-1">
                                                 <td>{{ form.image_2 }}</td>
-                                                <td><label for="{{ form.image_2.id_for_label }}" class="mr-3 hidden-sm-down">{{ form.image_2.label|truncatechars:9 }}</label></td>
+                                                <td><label for="{{ form.image_2.id_for_label }}" class="hidden-sm-down">{{ form.image_2.label|truncatechars:9 }}</label></td>
 {#                                                <td>{% if instance.image_2 %}<a href="{{ instance.image_2.url }}">instance.image_2.url|truncate</a> {% endif %}</td>#}
                                             </tr>
-                                            <tr>
+                                            <tr class="mb-1">
                                                 <td>{{ form.image_3 }}</td>
-                                                <td><label for="{{ form.image_3.id_for_label }}" class="mr-3 hidden-sm-down">{{ form.image_3.label }}</label></td>
+                                                <td><label for="{{ form.image_3.id_for_label }}" class="hidden-sm-down">{{ form.image_3.label }}</label></td>
 {#                                                <td>{% if instance.image_3 %}<a href="{{ instance.image_3.url }}">instance.image_3.url|truncate</a>{% endif %}</td>#}
                                             </tr>
-                                            <tr>
+                                            <tr class="mb-1">
                                                 <td>{{ form.image_4 }}</td>
-                                                <td><label for="{{ form.image_4.id_for_label }}" class="mr-3 hidden-sm-down">{{ form.image_4.label }}</label></td>
+                                                <td><label for="{{ form.image_4.id_for_label }}" class="hidden-sm-down">{{ form.image_4.label }}</label></td>
 {#                                                <td>{% if instance.image_4 %}<a href="{{ instance.image_4.url }}">instance.image_4.url|truncate</a> {% endif %}</td>#}
                                             </tr>
-                                            <tr>
+                                            <tr class="mb-1">
                                                 <td>{{ form.image_5 }}</td>
-                                                <td><label for="{{ form.image_5.id_for_label }}" class="mr- hidden-sm-down">{{ form.image_5.label }}</label></td>
+                                                <td><label for="{{ form.image_5.id_for_label }}" class="hidden-sm-down">{{ form.image_5.label }}</label></td>
                                                 <td>{% if instance.image_5 %}<a href="{{ instance.image_5.url }}">instance.image_5.url|truncate</a> {% endif %}</td>
                                             </tr>
                                             </tbody>
@@ -77,7 +77,7 @@
                                     <table class="col">
                                         <tbody class="table table-borderless">
                                         <tr class="col-sm">
-                                            <td class=""><label for="{{ form.appart_1.id_for_label }}"class="mr-3">1-Час</label></td>
+                                            <td class=""><label for="{{ form.appart_1.id_for_label }}"class="">1-Час</label></td>
                                             <td>{{ form.appart_1 }}</td>
                                         </tr>
                                         <tr>
@@ -208,7 +208,7 @@
                                 </div>
 
                                 <hr>
-                                <input type="submit" value="Создать анкету" class="btn btn-primary float-right mb-3">
+                                <input type="submit" value="Создать анкету" class="btn btn-primary float-right mb-3 mr-2">
                             </div>
                         </div>
                     </form>

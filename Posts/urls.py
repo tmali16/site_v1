@@ -21,8 +21,9 @@ urlpatterns = [
     url(r'^(?P<id>\d+)/edit/$', views.post_update, name="edit"),
     url(r'^(?P<id>\d+)/edit_profile/$', profile_update, name="prof_ed"),
 
+
     # -----------------------ajax--------------------------------
-    url(r'^(?P<id>\d+)/$', views.test, name="test"),
+    url(r'^test/$', views.test, name="test"),
 
     # ---------------------filter-------------------------------
 

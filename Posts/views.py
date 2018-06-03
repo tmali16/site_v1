@@ -1,8 +1,11 @@
+import json
+
 from django.contrib import messages
 from django.core.paginator import *
 from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from datetime import *
+from django.http import JsonResponse
 
 from Comment.commentsForm import CommentForm
 from Comment.models import Comment
@@ -97,7 +100,7 @@ def post_delete(request, id=None):
 def post_detail(request, id=None):
     instance = get_object_or_404(Post, id=id)
     serviceInstance = get_object_or_404(Service, post_id=id)
-
+    active_d = ['1', '5', '10']
     if not request.user.is_authenticated:
         if not (instance.user_active and instance.admin_active):
             print("Not activate")
@@ -115,7 +118,7 @@ def post_detail(request, id=None):
         "object_id": instance.id
     }
     comment_form = CommentForm(request.POST or None, initial=initial_data)
-    # if request.user.is_authenticated:
+    # if request:
     if comment_form.is_valid():
         c_type = comment_form.cleaned_data.get("content_type")
         content_type = ContentType.objects.get(model=c_type)
@@ -147,44 +150,55 @@ def post_detail(request, id=None):
         )
         return HttpResponseRedirect(new_comment.content_object.get_absolute_url())
         # return redirect('Posts:detail', id=obj_id)
-    else:
-        pass
+
         # messages.warning(request, 'not valid comment')
     comments = instance.comments
     context = {
         "comments": comments,
         "comment_form": comment_form,
         "instance": instance,
-        'serv_instance': serviceInstance
+        'serv_instance': serviceInstance,
+        'actives': active_d,
     }
     return render(request, "detail_post.html", context)
 
 
-def test(request, id=None):
-    if request.GET:
-        u_name = request.GET['content']
-        return HttpResponse('no', content_type='text/html')
+def test(request):
+    if request.is_ajax():
+        u_name = request.POST['days']
+        print(u_name)
+    data = {
+        'alsert': 'ok'
+    }
+    return JsonResponse(data)
 
 
 # ------------------------------------------------------------------------------------
-def one_day(d):
-    return d - (d - 1)
-
-
-def count_end_date(d):
-    day = timezone.now() + timedelta(minutes=one_day(d))
-    return day
+    #return code
+    # 0 - day enought can't activate
+    # 1 - its ok works
+    # 2 - don't have active days
+    # 3 - form is activate
+    #
 
 
 def active_state(request, id):
-    inst = get_object_or_404(Post, id=id)
-    if inst.user_active:
-        Post.objects.filter(id=id).update(user_active=False)
-        redirect('Posts:profile')
+    res = 7
+    if request.is_ajax():
+        u_name = int(request.POST['days'])
+        res = active_object(id,u_name)
+    if res == 0:
+        ret = 'Увас не тостаочно дней для активации'
+    elif res == 1:
+        ret = 'Анкета активировано'
+    elif res == 2:
+        ret = 'У вас нет активных дней'
+    elif res == 3:
+        ret = 'Анкета {0} активировано'.format(id)
     else:
-        Post.objects.filter(id=id).update(user_active=True)
-        redirect('Posts:profile')
-    return redirect(inst.get_absolute_url())
+        ret = 'Не известный ответ'
+    print(ret)
+    return HttpResponse(ret)
 
 
 def filter_excpencive(request):

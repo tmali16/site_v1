@@ -1,7 +1,4 @@
 $(function() {
-	$('#myModal').on('shown.bs.modal', function () {
-	  $('#myInput').trigger('focus')
-	});
 	//SVG Fallback
 	if(!Modernizr.svg) {
 		$("img[src*='svg']").attr("src", function() {
@@ -10,22 +7,8 @@ $(function() {
 	};
 
 	//E-mail Ajax Send
-	//Documentation & Example: https://github.com/agragregra/uniMail
-	$("form").submit(function() { //Change
-		var th = $(this);
-		$.ajax({
-			type: "POST",
-			url: "mail.php", //Change
-			data: th.serialize()
-		}).done(function() {
-			alert("Thank you!");
-			setTimeout(function() {
-				// Done Functions
-				th.trigger("reset");
-			}, 1000);
-		});
-		return false;
-	});
+	// Documentation & Example: https://github.com/agragregra/uniMail
+
 
 	//Chrome Smooth Scroll
 	try {
@@ -39,7 +22,10 @@ $(function() {
 
 	$("img, a").on("dragstart", function(event) { event.preventDefault(); });
 
-
+    $(window).load(function () {
+        $('.loader_inners').fadeOut();
+        $('.loaders').delay(400).fadeOut("slow");
+    });
 
 
 });

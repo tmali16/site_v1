@@ -13,7 +13,7 @@
             </div>
         {% endfor %}
     {% endif %}
-    <form method="POST" action="">{% csrf_token %}
+    <form method="POST" action="" id="comment">{% csrf_token %}
         {% if not request.user.is_authenticated %}{{ comment_form.username }}{% endif %}
         <div class="input-group">
             {{ comment_form.content_type }}

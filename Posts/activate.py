@@ -2,32 +2,57 @@ from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from Posts.models import Post
 from datetime import timedelta
-import time
-import threading
 
 
-def active_object():
-    for i in Post.objects.values_list('id', flat=True).filter(user_active=True).filter(admin_active=True).order_by('id'):
-        toDay = timezone.now()
-        a_active = get_object_or_404(Post, id=i).admin_active
-        u_active = get_object_or_404(Post, id=i).user_active
-        # e_date = get_object_or_404(Post, id=i).end_date
-        if a_active and u_active:
-            Post.objects.filter(id=i).update(active_counter=None)
+def count_end_date(d, c):
+    if d >= c:
+        count = (d - (d - c))
+        if (d - count) >= 0:
+            day = timezone.now() + timedelta(hours=count)
+            return day
         else:
-            pass
+            return timezone.now()
+    else:
+        return timezone.now()
+
+
+def active_object(id, day_to_active):
+    inst = get_object_or_404(Post, id=id)
+    if inst.user_active:
+        if inst.active_counter > 0 or inst.active_counter is not None and not inst.admin_active:
+            return 3
+        else:
+            return 2
+    else:
+        if timezone.now() > inst.end_date and inst.active_counter > 0:
+            d = count_end_date(inst.active_counter, day_to_active)
+            if d > timezone.now():
+                Post.objects.filter(id=id).update(end_date=d)
+                Post.objects.filter(id=id).update(active_counter=(inst.active_counter - u_name))
+                Post.objects.filter(id=id).update(user_active=True)
+                return 1
+            else:
+                return 0
+        else:
+            Post.objects.filter(id=id).update(user_active=True)
+            return 2
 
 
 def checks():
-    for i in Post.objects.values_list('id', flat=True).filter(user_active=True).filter(admin_active=True).order_by('id'):
+    for i in Post.objects.values_list('id', flat=True).filter(user_active=True).filter(admin_active=True).order_by(
+            'id'):
         toDay = timezone.now()
         activ_days = get_object_or_404(Post, id=i).active_counter
         e_date = get_object_or_404(Post, id=i).end_date
 
         if toDay > e_date:
-            Post.objects.filter(id=i).update(active_counter=None)
+            if 0 < activ_days:
+                Post.objects.filter(id=i).update(user_active=False)
+            else:
+                Post.objects.filter(id=i).update(admin_active=False)
         else:
-            print(toDay)
+            print('Анкета №{0} активна'.format(id))
+
 
 def count_to_end_active():
     for id in Post.objects.values_list('id', flat=True).filter(user_active=True).filter(admin_active=True).order_by(
@@ -40,6 +65,6 @@ def count_to_end_active():
                 Post.objects.filter(id=id).update(admin_active=False)
                 print('deActivated')
             else:
-                end = (timezone.now()-end_date)
+                end = (timezone.now() - end_date)
                 # Post.objects.filter(id=id).update(active_day=end.minute)
                 print(end)

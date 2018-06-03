@@ -19,25 +19,41 @@ def comment_count(id):
         res = '0'
     return res
 
+
+filter_date = 80
+
+
 @register.filter
 def comment_post(id):
+    com = Comment.objects.filter(object_id=id)
     res = []
-    if Comment.objects.filter(object_id=id).count() > 0:
-        comments = Comment.objects.filter(object_id=id).all()
+    if com.count() > 0 and com.all().filter(
+            timestamp__range=(timezone.now() - timedelta(hours=filter_date), timezone.now())):
         res.append(Post.objects.get(id=id).name)
         print(res)
     return res
 
 
 @register.filter
+def new_form(time):
+    res = timezone.now() -timedelta(days=1)
+    today = timezone.now()
+    if today >= time >= res:
+        return True
+    else:
+        return False
+
+
+@register.filter
 def filter_comment(id):
-    comments = Comment.objects.filter(object_id=id).all() #.filter(timestamp__range=(timezone.now(), timezone.now() - timedelta(hours=1)))
+    comments = Comment.objects.filter(object_id=id).all().filter(
+        timestamp__range=(timezone.now() - timedelta(hours=filter_date), timezone.now()))
     r = []
     for s in comments:
         r.append(s.content)
-        if len(r) > 2:
+        if len(r) > 1:
             break
-    print('=> '+str(id))
+    print('=> ' + str(r))
     return r
 
 

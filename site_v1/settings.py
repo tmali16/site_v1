@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'Posts.apps.PostsConfig',
     'Service',
     'Comment',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

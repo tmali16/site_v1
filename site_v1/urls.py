@@ -17,10 +17,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-app_name='Posts'
+app_name = 'Posts', 'Posts-api'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('post/', include('Posts.urls', namespace='Posts')),
+    path('api/post/', include('Posts.api.urls', namespace='Posts-api')),
 ]
 
 if settings.DEBUG:

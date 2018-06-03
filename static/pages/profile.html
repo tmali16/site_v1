@@ -46,7 +46,7 @@
                             {% for post in posts %}
                                 <tr class="text-center border-bottom">
                                     <td scope="row"><a href="{% url 'Posts:detail' id=post.id%}" class="">{{ post.id }}</a></td>
-                                    <td>{{ post.name }}</td>
+                                    <td><a href="{% url 'Posts:detail' id=post.id%}" class="">{{ post.name }}</a></td>
                                     <td>{% if post.end_date %}{{ post.end_date|count_day}} {% else %} 0 {% endif %}</td>
                                     <td>{% if post.user_active %}<a href="{% if not post.admin_active %}#{% else %}{% url 'Posts:active_state' id=post.id%}{% endif %}" class="{% if not post.admin_active %}disabled {% endif %}">{% if not post.admin_active %}Включить{% else %}Отключить{% endif %} </a>{% else %}<a href="{% if not post.admin_active %}#{% else %}{% url 'Posts:active_state' id=post.id%}{% endif %}" class="{% if not post.admin_active %}disabled {% endif %}">{% if not post.admin_active %}Включить{% else %}Включить{% endif %} </a>{% endif %}
                                     <td><a data-toggle="collapse" href="#submitCollapse{{ post.id }}" role="button" aria-expanded="false" aria-controls="submitCollapse"><i class="fas fa-ellipsis-v text"></i></a>

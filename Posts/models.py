@@ -79,7 +79,7 @@ class Post(models.Model):
     sauna_2 = models.CharField(max_length=10, default="-", blank=True)
     sauna_night = models.CharField(max_length=10, default="-", blank=True)
 
-    active_counter = models.IntegerField(blank=True, null=True)
+    active_counter = models.IntegerField(blank=True, null=True, default=0)
     user_active = models.BooleanField(default=True)
     end_date = models.DateTimeField(auto_now_add=False, null=True, blank=True)
     admin_active = models.BooleanField(default=False)

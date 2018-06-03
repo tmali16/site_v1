@@ -1,10 +1,32 @@
+html.js .loaders {
+    background: none repeat scroll 0 0 #000;
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+}
+html.js .loader_inners {
+    background-size: cover;
+    background: #000 url("../../media/loader/preloader.gif") no-repeat center center;
+    height: 60px;
+    width: 60px;
+    margin-top: -30px;
+    margin-left: -30px;
+    left: 50%;
+    top: 50%;
+    position: absolute;
+}
 .html{
     height: 100%;
     width: 100%;
 }
 body{
     font-family: 'Nunito', sans-serif !important;
-    background: url("../../media/bg.jpg") no-repeat center center fixed;}
+    background: url("../../media/bg.jpg") no-repeat center center fixed #000;}
 
 .post_panel{
     /*height: 150px ;*/
@@ -264,4 +286,28 @@ body{
     background-color: #000;
     opacity:  0.5;
     z-index: 999;
+}
+.custom-file-label::after {
+    content: 'Выбрать' !important;
+}
+.new-form{
+    font-size: 30px;
+    font-weight: 500;
+    left: 9px;
+    margin: 0;
+    padding: 3px 10px;
+    position: absolute;
+    text-align: right;
+    text-transform: uppercase;
+    top: 10px;
+    transform: rotate(-15deg);
+    z-index: 99;
+    background: #3499ff none repeat scroll 0 0;
+    color: #ffffff;
+    border-radius: 50%;
+
+    font-family: 'Dancing Script', cursive;
+}
+.new-form span{
+    overflow: hidden;
 }
