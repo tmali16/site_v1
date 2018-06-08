@@ -18,23 +18,35 @@ def count_end_date(d, c):
 
 def active_object(id, day_to_active):
     inst = get_object_or_404(Post, id=id)
-    if inst.user_active:
+    if inst.user_active and inst.admin_active:
         if inst.active_counter > 0 or inst.active_counter is not None and not inst.admin_active:
-            return 3
-        else:
             return 2
+        else:
+            return 3
     else:
-        if timezone.now() > inst.end_date and inst.active_counter > 0:
+        if inst.end_date is None:
             d = count_end_date(inst.active_counter, day_to_active)
             if d > timezone.now():
                 Post.objects.filter(id=id).update(end_date=d)
                 Post.objects.filter(id=id).update(active_counter=(inst.active_counter - u_name))
                 Post.objects.filter(id=id).update(user_active=True)
+                Post.objects.filter(id=id).update(admin_active=True)
+                return 1
+            else:
+                return 0
+        elif (timezone.now() > inst.end_date) and inst.active_counter > 0:
+            d = count_end_date(inst.active_counter, day_to_active)
+            if d > timezone.now():
+                Post.objects.filter(id=id).update(end_date=d)
+                Post.objects.filter(id=id).update(active_counter=(inst.active_counter - u_name))
+                Post.objects.filter(id=id).update(user_active=True)
+                Post.objects.filter(id=id).update(admin_active=True)
                 return 1
             else:
                 return 0
         else:
             Post.objects.filter(id=id).update(user_active=True)
+            Post.objects.filter(id=id).update(admin_active=True)
             return 2
 
 

@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 
 class UserLoginForm(forms.Form):
-    username = forms.CharField(label='Имя пользователя', widget=forms.TextInput(attrs={'class':'form-control'}))
+    username = forms.CharField(label='Имя пользователя', widget=forms.TextInput(attrs={'class':'form-control mb-3'}))
     password = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class':'form-control'}))
 
     def clean(self, *args, **kwargs):

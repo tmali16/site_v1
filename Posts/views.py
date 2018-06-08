@@ -174,19 +174,19 @@ def test(request):
 
 
 # ------------------------------------------------------------------------------------
-    #return code
-    # 0 - day enought can't activate
-    # 1 - its ok works
-    # 2 - don't have active days
-    # 3 - form is activate
-    #
+# return code
+# 0 - day enought can't activate
+# 1 - its ok works
+# 2 - don't have active days
+# 3 - form is activate
+#
 
 
 def active_state(request, id):
     res = 7
     if request.is_ajax():
         u_name = int(request.POST['days'])
-        res = active_object(id,u_name)
+        res = active_object(id, u_name)
     if res == 0:
         ret = 'Увас не тостаочно дней для активации'
     elif res == 1:

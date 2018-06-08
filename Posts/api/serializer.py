@@ -1,3 +1,4 @@
+from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 
 from Posts.models import Post
@@ -5,6 +6,10 @@ from Service.models import Service
 
 
 class PostSerializer(ModelSerializer):
+    status = serializers.StringRelatedField()
+    types = serializers.StringRelatedField()
+    eye = serializers.StringRelatedField()
+    hair = serializers.StringRelatedField()
     class Meta:
         model = Post
         fields = [
@@ -30,6 +35,8 @@ class PostSerializer(ModelSerializer):
             'outside_1',
             'outside_2',
             'outside_nigth',
+            'update',
+            'status',
         ]
 
 

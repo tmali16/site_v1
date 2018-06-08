@@ -84,6 +84,7 @@ class Post(models.Model):
     end_date = models.DateTimeField(auto_now_add=False, null=True, blank=True)
     admin_active = models.BooleanField(default=False)
     status = models.ForeignKey(post_status, on_delete=models.CASCADE, null=True, blank=True)
+    engleash = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
