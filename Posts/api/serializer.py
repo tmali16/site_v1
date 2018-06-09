@@ -10,6 +10,7 @@ class PostSerializer(ModelSerializer):
     types = serializers.StringRelatedField()
     eye = serializers.StringRelatedField()
     hair = serializers.StringRelatedField()
+
     class Meta:
         model = Post
         fields = [
@@ -73,4 +74,4 @@ class ServiceSerializer(ModelSerializer):
             "extrim_strapon",
             "extrim_fisting_anal",
             "extrim_fisting_vagin",
-                ]
+        ]

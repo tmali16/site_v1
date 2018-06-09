@@ -1,4 +1,8 @@
 {% extends 'base.html' %}
+{% load cropping %}
+{% block link %}
+    {{ form.media }}
+{% endblock %}
 {% block body %}
     <br>
     <div class="container">
@@ -37,34 +41,27 @@
                                     <label for="{{ form.types.id_for_label }}" class="inline mr-3">{{ form.types.label }} </label>{{ form.types }}
                                     <label for="{{ form.note.id_for_label }}" class="inline mr-3">{{ form.note.label }} </label>{{ form.note }}
                                     <div class="panel">
-                                        <div class="panel-header bg-info mt-3 p-2"><label>Foto</label></div>
+                                        <div class="panel-header bg-info mt-3 p-2 text-white">Фото</div>
                                         <div class="panel-body border p-2 services ">
-                                        <table class="">
+                                        <table class="small">
                                             <tbody class="">
-                                            <tr class="mb-1">
-                                                <td>{{ form.image_1 }}</td>
-                                                <td><label for="{{ form.image_1.id_for_label }}" class="hidden-sm-down">{{ form.image_1.label|truncatechars:10 }}</label></td>
-{#                                                <td>{% if instance.image_1 %}<a href="{{ instance.image_1.url}}">{{instance.image_1.url|truncatechars:9 }}</a></td>{% endif %}#}
+                                            <tr class="mb-1 border-bottom">
+                                                <td class="pb-2">{% cropped_thumbnail form "image_1_cropping" %}</td>
                                             </tr>
-                                            <tr class="mb-1">
+                                            <tr class="mb-1 border-bottom">
                                                 <td>{{ form.image_2 }}</td>
-                                                <td><label for="{{ form.image_2.id_for_label }}" class="hidden-sm-down">{{ form.image_2.label|truncatechars:9 }}</label></td>
 {#                                                <td>{% if instance.image_2 %}<a href="{{ instance.image_2.url }}">instance.image_2.url|truncate</a> {% endif %}</td>#}
                                             </tr>
-                                            <tr class="mb-1">
-                                                <td>{{ form.image_3 }}</td>
-                                                <td><label for="{{ form.image_3.id_for_label }}" class="hidden-sm-down">{{ form.image_3.label }}</label></td>
+                                            <tr class="mb-1 border-bottom">
+                                                <td class="p-2">{{ form.image_3 }}</td>
 {#                                                <td>{% if instance.image_3 %}<a href="{{ instance.image_3.url }}">instance.image_3.url|truncate</a>{% endif %}</td>#}
                                             </tr>
-                                            <tr class="mb-1">
-                                                <td>{{ form.image_4 }}</td>
-                                                <td><label for="{{ form.image_4.id_for_label }}" class="hidden-sm-down">{{ form.image_4.label }}</label></td>
+                                            <tr class="mb-1 border-bottom">
+                                                <td class="p-2">{{ form.image_4 }}</td>
 {#                                                <td>{% if instance.image_4 %}<a href="{{ instance.image_4.url }}">instance.image_4.url|truncate</a> {% endif %}</td>#}
                                             </tr>
-                                            <tr class="mb-1">
-                                                <td>{{ form.image_5 }}</td>
-                                                <td><label for="{{ form.image_5.id_for_label }}" class="hidden-sm-down">{{ form.image_5.label }}</label></td>
-                                                <td>{% if instance.image_5 %}<a href="{{ instance.image_5.url }}">instance.image_5.url|truncate</a> {% endif %}</td>
+                                            <tr class="mb-1 border-bottom">
+                                                <td class="p-2">{{ form.image_5 }}</td>
                                             </tr>
                                             </tbody>
                                         </table>

@@ -11,7 +11,7 @@
                     {% if request.user.is_authenticated %}
                         <div class="tools mb-3 ">
                             <div class="button-group">
-                                <form action="{{ views.test }}" method="POST" class="form-inline active-days">{% csrf_token %}
+                                <form action="{{ views.test }}" method="POST" class="form-inline active-days" id="activate">{% csrf_token %}
                                     <label for="days" class="mr-3">Количество дней</label>
                                     <select class="form-control form-control-sm" id="days" name="days">
                                         {% for item in actives %}
@@ -198,7 +198,7 @@
 
 {% block js %}
     <script>
-	$("form").submit(function() { //Change
+	$("#activate").submit(function() { //Change
 		var th = $(this);
 		$.ajax({
 			type: "POST",

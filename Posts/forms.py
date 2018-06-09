@@ -5,6 +5,8 @@ from django.contrib.auth import (
     login,
     logout
 )
+from image_cropping import ImageCropWidget
+
 from Posts.models import *
 from Service.models import Service
 
@@ -20,11 +22,12 @@ class pForm(forms.ModelForm):
     eye = forms.ModelChoiceField(queryset=eyes.objects.all(), required=False, label='глаза', widget=forms.Select(attrs={'class': 'form-control form-control-sm'}))
     types = forms.ModelChoiceField(queryset=types.objects.all(), required=False, label='Тип', widget=forms.Select(attrs={'class': 'form-control form-control-sm'}))
     hair = forms.ModelChoiceField(queryset=haire.objects.all(), required=False, label='Волосы', widget=forms.Select(attrs={'class': 'form-control form-control-sm'}))
-    image_1 = forms.ImageField(required=True, label='Фото 1', widget=forms.ClearableFileInput(attrs={'class':'custom-file-input', 'accept':'.jpg, .jpeg, .png'}))
-    image_2 = forms.ImageField(required=False, label='Фото 2', widget=forms.ClearableFileInput(attrs={'class':'custom-file-input', 'accept':'.jpg, .jpeg, .png'}))
-    image_3 = forms.ImageField(required=False, label='Фото 3', widget=forms.ClearableFileInput(attrs={'class':'custom-file-input', 'accept':'.jpg, .jpeg, .png'}))
-    image_4 = forms.ImageField(required=False, label='Фото 4', widget=forms.ClearableFileInput(attrs={'class':'custom-file-input', 'accept':'.jpg, .jpeg, .png'}))
-    image_5 = forms.ImageField(required=False, label='Фото 5', widget=forms.ClearableFileInput(attrs={'class':'custom-file-input', 'accept':'.jpg, .jpeg, .png'}))
+    image_1 = forms.ImageField(required=True, label='Фото 1', widget=forms.ClearableFileInput(attrs={'class':'form-control-sm', 'accept':'.jpg, .jpeg, .png'}))
+    # image_1 = ImageCropField()
+    image_2 = forms.ImageField(required=False, label='Фото 2', widget=forms.ClearableFileInput(attrs={'class':'form-control-sm', 'accept':'.jpg, .jpeg, .png'}))
+    image_3 = forms.ImageField(required=False, label='Фото 3', widget=forms.ClearableFileInput(attrs={'class':'form-control-sm', 'accept':'.jpg, .jpeg, .png'}))
+    image_4 = forms.ImageField(required=False, label='Фото 4', widget=forms.ClearableFileInput(attrs={'class':'form-control-sm', 'accept':'.jpg, .jpeg, .png'}))
+    image_5 = forms.ImageField(required=False, label='Фото 5', widget=forms.ClearableFileInput(attrs={'class':'form-control-sm', 'accept':'.jpg, .jpeg, .png'}))
     appart_1 = forms.CharField(label='1-Час',required=True, widget=forms.TextInput(attrs={'class':'form-control form-control-sm'}))
     appart_2 = forms.CharField(label='2-Часа',required=False, widget=forms.TextInput(attrs={'class':'form-control form-control-sm'}))
     appart_naigth = forms.CharField(label='Ночь',required=False, widget=forms.TextInput(attrs={'class':'form-control form-control-sm'}))
@@ -40,7 +43,11 @@ class pForm(forms.ModelForm):
         super(pForm, self).__init__(*args, **kwargs)
 
     class Meta:
+        widgets = {
+            'image_1_cropping': ImageCropWidget,
+        }
         model = Post
+
         fields = [
             'name',
             'phone',

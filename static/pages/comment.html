@@ -13,13 +13,14 @@
             </div>
         {% endfor %}
     {% endif %}
-    <form method="POST" action="" id="comment">{% csrf_token %}
+    <form method="POST" action="">{% csrf_token %}
         {% if not request.user.is_authenticated %}{{ comment_form.username }}{% endif %}
         <div class="input-group">
             {{ comment_form.content_type }}
-            {{ comment_form.object_id }}
-            {{ comment_form.content }}
-            <div class="input-group-append"><button class="btn btn-outline-primary" type="submit"><i class="material-icons mt-1">send</i></button>
+            {{ comment_form.object_id   }}
+            {{ comment_form.content     }}
+            <div class="input-group-append"><button class="btn btn-outline-primary" type="submit">
+                <i class="material-icons mt-1">send</i></button>
             </div>
         </div>
     </form>

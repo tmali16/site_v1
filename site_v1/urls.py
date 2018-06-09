@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('post/', include('Posts.urls', namespace='Posts')),
     path('api/post/', include('Posts.api.urls', namespace='Posts-api')),
+    path('api/comment/', include('Comment.api.urls', namespace='Comment-api')),
 ]
 
 if settings.DEBUG:

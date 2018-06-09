@@ -84,12 +84,14 @@ def post_update(request, id=None):
         ins.post = mInstance
         ins.save()
         messages.success(request, 'Изменение сохранены!')
+        return HttpResponseRedirect(instance.get_absolute_url())
     context = {
         'title': title,
         'form': form,
         'sform': sform,
         'instance': instance
     }
+
     return render(request, "post_form.html", context)
 
 

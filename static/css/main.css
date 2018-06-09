@@ -150,7 +150,7 @@ body{
     height: 100%;
 }
 .carousel-indicator li{
-    margin-left: 10px;
+    margin-left: 5px;
     padding: 1px;
     display: inline-block;
     cursor: pointer;
@@ -162,13 +162,13 @@ body{
 }
 .service-item{
     margin-top: 5px;
-    margin-right: 10px;
+    margin-right: 5px;
     list-style: outside;
 }
 .carousel-indicator img{
-    padding: 10px;
-    height: 100px;
-    width: 70px;
+    padding: 5px;
+    height: 70px;
+    width: 50px;
 }
 
 .brd{
